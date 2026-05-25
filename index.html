@@ -723,4 +723,164 @@ document.getElementById("aiChat").innerText = response;
 </script>
 
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MZ Study Universe</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f9;
+}
+
+header {
+  background: #1e3a8a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  background: #111827;
+}
+
+nav button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  background: #111827;
+  color: white;
+}
+
+nav button:hover {
+  background: #374151;
+}
+
+section {
+  display: none;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button.primary {
+  background: #1e3a8a;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>MZ Study Universe</h1>
+  <p>Learn • Practice • Excel</p>
+</header>
+
+<nav>
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('subjects')">Subjects</button>
+  <button onclick="show('ai')">AI Tutor</button>
+  <button onclick="show('papers')">Past Papers</button>
+  <button onclick="show('login')">Login</button>
+  <button onclick="show('settings')">Settings</button>
+  <button onclick="show('contact')">Contact</button>
+</nav>
+
+<section id="home" class="active">
+  <div class="card">
+    Welcome to your learning platform. Everything is organized for GCE preparation.
+  </div>
+</section>
+
+<section id="subjects">
+  <div class="card">Advanced Mathematics (A-Math)</div>
+  <div class="card">Further Mathematics (FodaMath)</div>
+  <div class="card">Physics</div>
+  <div class="card">Biology</div>
+  <div class="card">Chemistry</div>
+</section>
+
+<section id="ai">
+  <div class="card">
+    <h3>AI Tutor Professional</h3>
+    <textarea id="question" placeholder="Ask your question..."></textarea>
+    <button class="primary" onclick="answer()">Ask AI</button>
+    <p id="response"></p>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="card">Physics Past Papers (Download Section)</div>
+  <div class="card">Chemistry Past Papers (Download Section)</div>
+  <div class="card">Math Past Papers (Download Section)</div>
+  <div class="card">Biology Past Papers (Download Section)</div>
+</section>
+
+<section id="login">
+  <div class="card">
+    <h3>Student Login</h3>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button class="primary">Login</button>
+  </div>
+</section>
+
+<section id="settings">
+  <div class="card">
+    <h3>Settings</h3>
+    <p>Theme: Default</p>
+    <p>Account: Student Mode</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h3>Contact Information</h3>
+    <p>Email: support@mzstudyuniverse.com</p>
+    <p>Phone: +237 XXX XXX XXX</p>
+  </div>
+</section>
+
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function answer(){
+  let q = document.getElementById("question").value;
+  document.getElementById("response").innerText =
+    "AI Tutor Response: Study the concept step by step. (" + q + ")";
+}
+</script>
+
+</body>
+</html> 
+
