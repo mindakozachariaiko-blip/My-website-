@@ -1,563 +1,250 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MZI Study Universe 🌍</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MZ Study Universe</title>
 
 <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    header {
+        background: #1e293b;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
 
-body{
-    font-family:Segoe UI, sans-serif;
-    background:linear-gradient(to right,#dbeafe,#f8fafc);
-    color:#111827;
-}
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
 
-/* NAVBAR */
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
 
-nav{
-    background:#1e3a8a;
-    color:white;
-    padding:18px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
+    .card:hover {
+        transform: scale(1.05);
+        background: #334155;
+    }
 
-/* HERO */
+    .card h3 {
+        margin-bottom: 10px;
+    }
 
-.hero{
-    text-align:center;
-    padding:40px 20px;
-}
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #38bdf8;
+        color: black;
+        font-weight: bold;
+        margin-top: 10px;
+    }
 
-.hero h1{
-    font-size:40px;
-    color:#1e3a8a;
-    margin-bottom:10px;
-}
+    button:hover {
+        background: #0ea5e9;
+    }
 
-.hero p{
-    font-size:18px;
-    color:#374151;
-}
+    .section {
+        display: none;
+        padding: 20px;
+    }
 
-/* MAIN CONTAINER */
+    .active {
+        display: block;
+    }
 
-.container{
-    width:95%;
-    max-width:900px;
-    margin:auto;
-    margin-top:20px;
-}
-
-/* CARDS */
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    margin-bottom:25px;
-}
-
-/* SUBJECT BUTTONS */
-
-.subject-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
-}
-
-.subject-btn{
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:18px;
-    border-radius:10px;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.subject-btn:hover{
-    transform:scale(1.03);
-    background:#1d4ed8;
-}
-
-/* QUIZ */
-
-#quiz-screen{
-    display:none;
-}
-
-.question{
-    font-size:24px;
-    margin-bottom:20px;
-    font-weight:bold;
-}
-
-.option-btn{
-    width:100%;
-    padding:15px;
-    margin-bottom:12px;
-    border:none;
-    background:#f3f4f6;
-    border-radius:10px;
-    font-size:17px;
-    cursor:pointer;
-    transition:0.3s;
-    text-align:left;
-}
-
-.option-btn:hover{
-    background:#dbeafe;
-}
-
-.timer{
-    background:#fee2e2;
-    color:#991b1b;
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:20px;
-    font-weight:bold;
-    text-align:center;
-    font-size:20px;
-}
-
-/* RESULT */
-
-#result-screen{
-    display:none;
-}
-
-.score{
-    font-size:30px;
-    color:#1e3a8a;
-    text-align:center;
-    margin-bottom:20px;
-    font-weight:bold;
-}
-
-.review-card{
-    background:#f9fafb;
-    padding:15px;
-    border-left:5px solid #2563eb;
-    border-radius:8px;
-    margin-bottom:15px;
-}
-
-/* AI TUTOR */
-
-.ai-box textarea{
-    width:100%;
-    height:120px;
-    padding:15px;
-    border-radius:10px;
-    border:1px solid #d1d5db;
-    font-size:16px;
-    resize:none;
-}
-
-.ai-box button{
-    margin-top:10px;
-    background:#10b981;
-    color:white;
-    border:none;
-    padding:15px;
-    width:100%;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-.ai-response{
-    margin-top:20px;
-    background:#eff6ff;
-    padding:15px;
-    border-radius:10px;
-    line-height:1.7;
-}
-
-/* FOOTER */
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#6b7280;
-    margin-top:40px;
-}
-
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: #1e293b;
+        margin-top: 20px;
+    }
 </style>
 </head>
 
 <body>
 
-<nav>MZI Study Universe 🌌</nav>
+<header>
+    MZ STUDY UNIVERSE
+</header>
 
-<div class="hero">
-    <h1>Welcome to MZI Study Universe</h1>
-    <p>CBT Exams • AI Tutor • Past Papers • Quiz Practice</p>
+<!-- HOME -->
+<div id="home" class="section active">
+    <div class="container">
+
+        <div class="card" onclick="openSection('math')">
+            <h3>Mathematics</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('compmath')">
+            <h3>Computer Mathematics</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('physics')">
+            <h3>Physics</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('chemistry')">
+            <h3>Chemistry</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('biology')">
+            <h3>Biology</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('quizzes')">
+            <h3>Quizzes</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('gce')">
+            <h3>GCSE Papers</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('concours')">
+            <h3>Concours</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('pastpapers')">
+            <h3>Past Papers</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('contact')">
+            <h3>Contact Info</h3>
+            <button>Enter</button>
+        </div>
+
+        <div class="card" onclick="openSection('share')">
+            <h3>Share Site</h3>
+            <button>Enter</button>
+        </div>
+
+    </div>
 </div>
 
-<div class="container">
-
-<!-- SUBJECT SELECTION -->
-
-<div id="subject-screen" class="card">
-
-<h2 style="margin-bottom:20px;">Select a Subject</h2>
-
-<div class="subject-grid">
-
-<button class="subject-btn" onclick="startQuiz('maths')">📐 Mathematics</button>
-
-<button class="subject-btn" onclick="startQuiz('further')">📊 Further Maths</button>
-
-<button class="subject-btn" onclick="startQuiz('physics')">⚡ Physics</button>
-
-<button class="subject-btn" onclick="startQuiz('chemistry')">🧪 Chemistry</button>
-
-<button class="subject-btn" onclick="startQuiz('biology')">🧬 Biology</button>
-
-<button class="subject-btn" onclick="startQuiz('statistics')">📈 Statistics</button>
-
+<!-- SUBJECT SECTIONS -->
+<div id="math" class="section">
+    <h2>Mathematics</h2>
+    <p>Content will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
+<div id="compmath" class="section">
+    <h2>Computer Mathematics</h2>
+    <p>Content will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
-<!-- QUIZ SCREEN -->
-
-<div id="quiz-screen" class="card">
-
-<div class="timer" id="timer">⏳ 02:00</div>
-
-<h3 id="question-number"></h3>
-
-<div class="question" id="question-text"></div>
-
-<div id="options-container"></div>
-
+<div id="physics" class="section">
+    <h2>Physics</h2>
+    <p>Content will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
-<!-- RESULT SCREEN -->
-
-<div id="result-screen" class="card">
-
-<h2>🏁 Quiz Completed</h2>
-
-<div class="score" id="score-text"></div>
-
-<h3>Corrections</h3>
-
-<div id="review-container"></div>
-
+<div id="chemistry" class="section">
+    <h2>Chemistry</h2>
+    <p>Content will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
-<!-- AI TUTOR -->
-
-<div class="card ai-box">
-
-<h2 style="margin-bottom:20px;">🤖 AI Tutor</h2>
-
-<textarea id="ai-question" placeholder="Ask any maths, physics, chemistry or biology question..."></textarea>
-
-<button onclick="askAI()">Ask AI Tutor</button>
-
-<div class="ai-response" id="ai-response">
-
-AI Tutor is ready to help you.
-
+<div id="biology" class="section">
+    <h2>Biology</h2>
+    <p>Content will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
+<div id="quizzes" class="section">
+    <h2>Quizzes</h2>
+    <p>Quiz system will be added here.</p>
+    <button onclick="backHome()">Back</button>
 </div>
 
+<div id="gce" class="section">
+    <h2>GCSE Papers</h2>
+    <p>Download or view papers here.</p>
+    <button onclick="backHome()">Back</button>
+</div>
+
+<div id="concours" class="section">
+    <h2>Concours</h2>
+    <p>Concours materials here.</p>
+    <button onclick="backHome()">Back</button>
+</div>
+
+<div id="pastpapers" class="section">
+    <h2>Past Papers</h2>
+    <p>Past papers collection.</p>
+    <button onclick="backHome()">Back</button>
+</div>
+
+<div id="contact" class="section">
+    <h2>Contact Information</h2>
+    <p>Email: youremail@example.com</p>
+    <p>Phone: +237 XXX XXX XXX</p>
+    <button onclick="backHome()">Back</button>
+</div>
+
+<div id="share" class="section">
+    <h2>Share This Site</h2>
+    <p>Share your website with others.</p>
+    <button onclick="shareSite()">Share</button>
+    <button onclick="backHome()">Back</button>
 </div>
 
 <footer>
-© 2026 MZI Study Universe | Built for Students in Cameroon 🇨🇲
+    © 2026 MZ Study Universe
 </footer>
 
 <script>
-
-/* QUIZ DATABASE */
-
-const quizDatabase = {
-
-maths:[
-{
-q:"What is the derivative of x²?",
-o:["x","2x","x²","1"],
-a:1
-},
-{
-q:"What is sin 90°?",
-o:["0","1","-1","Undefined"],
-a:1
-}
-],
-
-further:[
-{
-q:"What is i²?",
-o:["1","-1","i","0"],
-a:1
-},
-{
-q:"Limit of sinx/x as x approaches 0?",
-o:["0","1","∞","Undefined"],
-a:1
-}
-],
-
-physics:[
-{
-q:"SI unit of force?",
-o:["Newton","Joule","Watt","Pascal"],
-a:0
-},
-{
-q:"Speed of light is?",
-o:["3×10⁸ m/s","300 m/s","3×10⁶ m/s","1500 m/s"],
-a:0
-}
-],
-
-chemistry:[
-{
-q:"Chemical symbol for Sodium?",
-o:["Na","S","So","Sd"],
-a:0
-},
-{
-q:"pH less than 7 means?",
-o:["Neutral","Acidic","Basic","Salt"],
-a:1
-}
-],
-
-biology:[
-{
-q:"Powerhouse of the cell?",
-o:["Nucleus","Mitochondria","Golgi","Ribosome"],
-a:1
-},
-{
-q:"Organ used for breathing?",
-o:["Heart","Lungs","Kidney","Liver"],
-a:1
-}
-],
-
-statistics:[
-{
-q:"Square root of variance is?",
-o:["Mean","Median","Standard deviation","Mode"],
-a:2
-},
-{
-q:"Average is also called?",
-o:["Range","Mean","Variance","Quartile"],
-a:1
-}
-]
-
-};
-
-let currentQuestions = [];
-let currentIndex = 0;
-let score = 0;
-let timer;
-let timeLeft = 120;
-let reviews = [];
-
-/* START QUIZ */
-
-function startQuiz(subject){
-
-document.getElementById("subject-screen").style.display="none";
-document.getElementById("quiz-screen").style.display="block";
-
-currentQuestions = quizDatabase[subject];
-currentIndex = 0;
-score = 0;
-reviews = [];
-
-showQuestion();
-
+function openSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 }
 
-/* SHOW QUESTION */
-
-function showQuestion(){
-
-clearInterval(timer);
-
-if(currentIndex >= currentQuestions.length){
-    endQuiz();
-    return;
+function backHome() {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById('home').classList.add('active');
 }
 
-let q = currentQuestions[currentIndex];
-
-document.getElementById("question-number").innerText =
-`Question ${currentIndex+1} of ${currentQuestions.length}`;
-
-document.getElementById("question-text").innerText = q.q;
-
-let optionsHTML = "";
-
-q.o.forEach((option,index)=>{
-
-optionsHTML += `
-<button class="option-btn" onclick="selectAnswer(${index})">
-${option}
-</button>
-`;
-
-});
-
-document.getElementById("options-container").innerHTML = optionsHTML;
-
-timeLeft = 120;
-
-updateTimer();
-
-timer = setInterval(()=>{
-
-timeLeft--;
-
-updateTimer();
-
-if(timeLeft <= 0){
-    selectAnswer(-1);
+function shareSite() {
+    if (navigator.share) {
+        navigator.share({
+            title: "MZ Study Universe",
+            url: window.location.href
+        });
+    } else {
+        alert("Copy link: " + window.location.href);
+    }
 }
-
-},1000);
-
-}
-
-/* TIMER */
-
-function updateTimer(){
-
-let mins = Math.floor(timeLeft/60).toString().padStart(2,'0');
-let secs = (timeLeft%60).toString().padStart(2,'0');
-
-let timerDisplay = document.getElementById("timer");
-
-timerDisplay.innerText = `⏳ ${mins}:${secs}`;
-
-if(timeLeft <= 30){
-    timerDisplay.style.color = "red";
-}
-
-}
-
-/* SELECT ANSWER */
-
-function selectAnswer(choice){
-
-clearInterval(timer);
-
-let q = currentQuestions[currentIndex];
-
-if(choice === q.a){
-    score++;
-}
-
-reviews.push({
-question:q.q,
-correct:q.o[q.a],
-chosen: choice === -1 ? "Time Out" : q.o[choice]
-});
-
-currentIndex++;
-
-showQuestion();
-
-}
-
-/* END QUIZ */
-
-function endQuiz(){
-
-document.getElementById("quiz-screen").style.display="none";
-
-document.getElementById("result-screen").style.display="block";
-
-document.getElementById("score-text").innerText =
-`You scored ${score}/${currentQuestions.length}`;
-
-localStorage.setItem("latestScore",
-`${score}/${currentQuestions.length}`);
-
-let reviewHTML = "";
-
-reviews.forEach((r,index)=>{
-
-reviewHTML += `
-<div class="review-card">
-<b>Q${index+1}:</b> ${r.question}<br><br>
-
-<b>Your Answer:</b> ${r.chosen}<br>
-
-<b>Correct Answer:</b> ${r.correct}
-</div>
-`;
-
-});
-
-document.getElementById("review-container").innerHTML = reviewHTML;
-
-}
-
-/* AI TUTOR */
-
-function askAI(){
-
-let question = document.getElementById("ai-question").value.toLowerCase();
-
-let response = "";
-
-if(question.includes("derivative")){
-    response = "A derivative measures rate of change. Example: derivative of x² is 2x.";
-}
-
-else if(question.includes("newton")){
-    response = "Newton is the SI unit of force.";
-}
-
-else if(question.includes("photosynthesis")){
-    response = "Photosynthesis is the process by which green plants make food using sunlight.";
-}
-
-else if(question.includes("atom")){
-    response = "An atom is the smallest unit of an element.";
-}
-
-else if(question.includes("variance")){
-    response = "Variance measures spread of data values.";
-}
-
-else{
-    response = "AI Tutor: I am still learning. Add more intelligent responses later.";
-}
-
-document.getElementById("ai-response").innerText = response;
-
-}
-
-</script>
+        </script> 
 
 </body>
-  </html> 
+</html>
