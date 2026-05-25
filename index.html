@@ -308,7 +308,7 @@
         }
 
         function triggerPaperNotFound(targetName) {
-            document.getElementById('modal-description-text').innerHTML = `The document resource <strong>"${targetName}"</strong> is currently not found or has not been uploaded yet by Mindako Z. Iko. Please check back later!`;
+            document.getElementById('modal-description-text').innerHTML = `The document resource <strong>"${targetName}"</strong> is currently not found or has not been uploaded yet by mzi. Please check back later!`;
             document.getElementById('not-found-modal').classList.remove('hidden');
         }
 
@@ -324,7 +324,7 @@
             if (navigator.share) {
                 navigator.share({
                     title: "mzi's sTudy Universe",
-                    text: 'Join Mindako Z. Iko on this platform to prepare for Cameroon GCE and Concours exams!',
+                    text: 'Join us on this platform to prepare for Cameroon GCE and Concours exams!',
                     url: window.location.href
                 }).catch(console.error);
             } else {
