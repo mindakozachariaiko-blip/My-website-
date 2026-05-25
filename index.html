@@ -2,296 +2,314 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>mzi's sTudy Universe</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Smooth transitions and custom entry animations */
+        /* Smooth UI transitions and entry animations */
         .nav-btn {
             transition: all 0.2s ease-in-out;
         }
-        .nav-btn:hover {
-            transform: translateX(4px);
-        }
         .fade-in {
-            animation: fadeIn 0.35s ease-out forwards;
+            animation: fadeIn 0.3s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom scrollbar styling for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        /* Lock view parameters for native Android feel */
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-size: 16px; /* Android standard base readability sizing */
         }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 lg:flex min-h-screen">
+<body class="bg-slate-100 font-sans text-slate-900 lg:flex min-h-screen overflow-x-hidden select-none">
 
-    <div class="bg-indigo-950 text-white p-4 flex justify-between items-center lg:hidden sticky top-0 z-50 shadow-md">
-        <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-earth-africa text-amber-400 text-xl animate-spin-slow"></i>
-            <span class="font-bold text-sm tracking-wider uppercase text-amber-400">MZI'S STUDY UNIVERSE</span>
+    <div class="bg-indigo-950 text-white py-4 px-5 flex justify-between items-center lg:hidden sticky top-0 z-50 shadow-lg w-full">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-earth-africa text-amber-400 text-2xl animate-pulse"></i>
+            <span class="font-black text-base tracking-wide uppercase text-amber-400">MZI'S STUDY UNIVERSE</span>
         </div>
-        <button onclick="toggleMobileMenu()" class="text-white text-xl p-1 focus:outline-none cursor-pointer">
+        <button onclick="toggleMobileMenu()" class="text-white text-2xl p-2 focus:outline-none bg-indigo-900/40 rounded-full active:scale-95 transition cursor-pointer">
             <i id="menu-icon" class="fa-solid fa-bars"></i>
         </button>
     </div>
 
-    <aside id="sidebar" class="hidden lg:flex w-full lg:w-72 bg-gradient-to-b from-indigo-950 to-slate-900 text-white flex-col shadow-xl lg:sticky lg:top-0 lg:h-screen overflow-y-auto z-40">
+    <aside id="sidebar" class="hidden lg:flex w-full lg:w-80 bg-gradient-to-b from-indigo-950 to-slate-950 text-white flex-col shadow-2xl fixed lg:sticky top-[64px] lg:top-0 h-[calc(100vh-64px)] lg:h-screen overflow-y-auto z-40">
         
-        <div class="p-6 border-b border-indigo-800/40 flex flex-col items-center text-center select-none pointer-events-none">
-            <svg class="w-16 h-16 text-amber-400 mb-2 drop-shadow" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <div class="p-6 border-b border-indigo-900/60 flex flex-col items-center text-center select-none pointer-events-none bg-indigo-950/40">
+            <svg class="w-16 h-16 text-amber-400 mb-3 drop-shadow-md" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.738.09-1.455.257-2.147m15.686 0z"></path>
             </svg>
-            <h1 class="text-lg font-black tracking-wider uppercase text-amber-400">mzi's sTudy Universe</h1>
-            <p class="text-[11px] text-indigo-200 mt-1 italic">Mapping Knowledge Globally, Rooted in Cameroon</p>
+            <h1 class="text-xl font-black tracking-wide uppercase text-amber-400">mzi's sTudy Universe</h1>
+            <p class="text-xs text-indigo-200 mt-1 italic">Mapping Knowledge Globally, Rooted in Cameroon</p>
         </div>
 
-        <nav class="flex-1 p-4 space-y-1" id="sidebar-nav">
-            <p class="text-[10px] font-bold text-indigo-300 uppercase px-3 mb-2 tracking-widest">Core Intelligence</p>
+        <nav class="flex-1 p-5 space-y-2" id="sidebar-nav">
+            <p class="text-xs font-bold text-indigo-400 uppercase px-3 mb-2 tracking-widest">Core Intelligence</p>
             
-            <button onclick="switchTab('ai-chat')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg bg-indigo-800 text-white font-medium text-left cursor-pointer">
-                <i class="fa-solid fa-robot w-5 text-amber-400"></i> <span>AI Study Assistant</span>
+            <button onclick="switchTab('ai-chat')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl bg-indigo-800 text-white font-bold text-left text-base cursor-pointer shadow-md">
+                <i class="fa-solid fa-robot w-6 text-amber-400 text-xl"></i> <span>AI Study Assistant</span>
             </button>
 
-            <p class="text-[10px] font-bold text-indigo-300 uppercase px-3 pt-3 mb-2 tracking-widest">Main Academic Hub</p>
+            <p class="text-xs font-bold text-indigo-400 uppercase px-3 pt-4 mb-2 tracking-widest">Main Academic Hub</p>
             
-            <button onclick="switchTab('quizzes')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-brain w-5 text-indigo-400"></i> <span>Interactive Quizzes</span>
+            <button onclick="switchTab('quizzes')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-brain w-6 text-indigo-400 text-xl"></i> <span>Interactive Quizzes</span>
             </button>
             
-            <button onclick="switchTab('past-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-file-invoice w-5 text-indigo-400"></i> <span>GCE Past Papers</span>
+            <button onclick="switchTab('past-papers')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-file-invoice w-6 text-indigo-400 text-xl"></i> <span>GCE Past Papers</span>
             </button>
 
-            <button onclick="switchTab('mock-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-file-signature w-5 text-indigo-400"></i> <span>Mock Past Papers</span>
+            <button onclick="switchTab('mock-papers')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-file-signature w-6 text-indigo-400 text-xl"></i> <span>Mock Past Papers</span>
             </button>
 
-            <button onclick="switchTab('concours')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-graduation-cap w-5 text-indigo-400"></i> <span>Concours Hub (ENSP, CUSS...)</span>
+            <button onclick="switchTab('concours')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-graduation-cap w-6 text-indigo-400 text-xl"></i> <span>Concours Hub Portal</span>
             </button>
 
-            <button onclick="switchTab('video-lessons')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-video w-5 text-indigo-400"></i> <span>Video Lessons</span>
+            <button onclick="switchTab('video-lessons')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-video w-6 text-indigo-400 text-xl"></i> <span>Video Lessons</span>
             </button>
 
-            <button onclick="switchTab('library')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-book-open w-5 text-indigo-400"></i> <span>Digital Library / Textbooks</span>
+            <button onclick="switchTab('library')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-book-open w-6 text-indigo-400 text-xl"></i> <span>Digital Library / Books</span>
             </button>
 
-            <p class="text-[10px] font-bold text-indigo-300 uppercase px-3 pt-3 mb-2 tracking-widest">Interactive & Commerce</p>
+            <p class="text-xs font-bold text-indigo-400 uppercase px-3 pt-4 mb-2 tracking-widest">Interactive & Commerce</p>
 
-            <button onclick="switchTab('competitions')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-gamepad w-5 text-indigo-400"></i> <span>Online Friend Quiz</span>
+            <button onclick="switchTab('competitions')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-gamepad w-6 text-indigo-400 text-xl"></i> <span>Online Friend Quiz</span>
             </button>
 
-            <button onclick="switchTab('buy-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-cart-shopping w-5 text-indigo-400"></i> <span>Buy Premium Papers</span>
+            <button onclick="switchTab('buy-papers')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-cart-shopping w-6 text-indigo-400 text-xl"></i> <span>Buy Premium Papers</span>
             </button>
 
-            <p class="text-[10px] font-bold text-indigo-300 uppercase px-3 pt-3 mb-2 tracking-widest">Information Panel</p>
+            <p class="text-xs font-bold text-indigo-400 uppercase px-3 pt-4 mb-2 tracking-widest">Information Panel</p>
 
-            <button onclick="switchTab('contact')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-envelope w-5 text-indigo-400"></i> <span>Contact & Creator Info</span>
+            <button onclick="switchTab('contact')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-envelope w-6 text-indigo-400 text-xl"></i> <span>Contact & Creator Info</span>
             </button>
 
-            <button onclick="switchTab('settings')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer">
-                <i class="fa-solid fa-sliders w-5 text-indigo-400"></i> <span>Settings & Admin Panel</span>
+            <button onclick="switchTab('settings')" class="nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer">
+                <i class="fa-solid fa-sliders w-6 text-indigo-400 text-xl"></i> <span>Settings & Admin Panel</span>
             </button>
         </nav>
         
-        <div class="p-4 border-t border-indigo-900/60 text-center text-[11px] text-indigo-300 bg-slate-950/30">
+        <div class="p-4 border-t border-indigo-900/60 text-center text-xs text-indigo-300 bg-slate-950/40">
             &copy; 2026 mzi's sTudy Universe
         </div>
     </aside>
 
-    <div class="flex-1 flex flex-col min-w-0">
+    <div class="flex-1 flex flex-col min-w-0 w-full">
         
-        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shadow-sm shrink-0">
-            <div class="flex items-center space-x-2">
-                <span id="current-portal-title" class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">AI Study Assistant</span>
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shadow-sm shrink-0 w-full">
+            <div>
+                <span id="current-portal-title" class="px-3 py-1.5 bg-indigo-100 text-indigo-800 rounded-full text-xs font-black uppercase tracking-wider">AI Study Assistant</span>
             </div>
 
             <div class="flex items-center space-x-3">
-                <button onclick="shareWebsite()" class="flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold rounded-lg transition shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-share-nodes"></i>
-                    <span>Share Site</span>
+                <button onclick="shareWebsite()" class="flex items-center space-x-2 px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 text-sm font-bold rounded-xl transition shadow-sm active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-share-nodes text-base"></i>
+                    <span class="hidden sm:inline">Share</span>
                 </button>
-                
-                <div class="h-5 w-px bg-slate-200"></div>
-
-                <button onclick="switchTab('contact')" class="flex items-center space-x-2 hover:bg-slate-50 p-1 rounded-lg transition text-left cursor-pointer">
-                    <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xs shadow">MZ</div>
-                    <div class="hidden sm:block leading-none"><p class="text-xs font-bold text-slate-800">Mindako Z. Iko</p></div>
+                <div class="h-6 w-px bg-slate-200"></div>
+                <button onclick="switchTab('contact')" class="flex items-center space-x-2 p-1 rounded-xl transition text-left cursor-pointer active:bg-slate-100">
+                    <div class="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-black text-sm shadow">MZ</div>
+                    <div class="hidden sm:block leading-none"><p class="text-sm font-bold text-slate-800">Mindako Z. Iko</p></div>
                 </button>
             </div>
         </header>
 
-        <section class="bg-white border-b border-slate-200 px-4 md:px-8 py-3 flex items-center space-x-2 overflow-x-auto whitespace-nowrap scroll-smooth shadow-inner shrink-0">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mr-1">Subject Portals:</span>
-            <button onclick="filterSubject('Mathematics')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Mathematics</button>
-            <button onclick="filterSubject('Computer Science')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Computer Science</button>
-            <button onclick="filterSubject('Further Mathematics')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Further Math</button>
-            <button onclick="filterSubject('Chemistry')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Chemistry</button>
-            <button onclick="filterSubject('Physics')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Physics</button>
-            <button onclick="filterSubject('Biology')" class="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Biology</button>
+        <section class="bg-white border-b border-slate-200 px-4 md:px-8 py-3 flex items-center space-x-3 overflow-x-auto whitespace-nowrap shadow-inner shrink-0 w-full">
+            <span class="text-xs font-black text-slate-400 uppercase tracking-widest mr-1">Subjects:</span>
+            <button onclick="filterSubject('Mathematics')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Mathematics</button>
+            <button onclick="filterSubject('Computer Science')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Computer Science</button>
+            <button onclick="filterSubject('Further Mathematics')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Further Math</button>
+            <button onclick="filterSubject('Chemistry')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Chemistry</button>
+            <button onclick="filterSubject('Physics')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Physics</button>
+            <button onclick="filterSubject('Biology')" class="px-4 py-2 text-sm font-bold rounded-full bg-slate-200 hover:bg-indigo-600 hover:text-white transition active:scale-95 cursor-pointer">Biology</button>
         </section>
 
-        <main class="flex-1 p-4 md:p-8 bg-slate-50 overflow-y-auto" id="main-content">
+        <main class="flex-1 p-5 md:p-8 overflow-y-auto w-full" id="main-content">
             </main>
+    </div>
+
+    <div id="not-found-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-5 z-50 fade-in">
+        <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl text-center border border-slate-100">
+            <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="fa-solid fa-file-circle-xmark"></i>
+            </div>
+            <h3 class="text-xl font-black text-slate-900 mb-2">Paper Not Found</h3>
+            <p id="modal-description-text" class="text-sm text-slate-600 leading-relaxed font-medium mb-6">
+                This specific past paper document has not been uploaded to the server yet by Mindako Z. Iko. Please check back later!
+            </p>
+            <button onclick="closeModal()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold rounded-xl shadow-lg transition tracking-wide text-base cursor-pointer">
+                Understood
+            </button>
+        </div>
     </div>
 
     <script>
         let premiumPaperPrice = 1500;
 
-        // Custom Dynamic App Views Dictionary Content
+        // Unified Dynamic App Views System
         const contents = {
             'ai-chat': `
-                <div class="fade-in max-w-3xl mx-auto flex flex-col h-[70vh] bg-white rounded-xl border border-slate-200 shadow-md overflow-hidden">
-                    <div class="p-4 bg-slate-900 text-white flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-slate-900"><i class="fa-solid fa-robot"></i></div>
-                        <div><h3 class="font-bold text-sm">Mzi AI Tutor</h3><p class="text-[10px] text-emerald-400">Online & ready to solve equations</p></div>
+                <div class="fade-in max-w-3xl mx-auto flex flex-col h-[65vh] bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+                    <div class="p-4 bg-slate-950 text-white flex items-center space-x-3.5 shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-slate-950 shadow-md"><i class="fa-solid fa-robot text-xl"></i></div>
+                        <div><h3 class="font-black text-base text-amber-400">Mzi AI Tutor</h3><p class="text-xs text-emerald-400 font-medium">Online & ready to answer all science questions</p></div>
                     </div>
-                    <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs md:text-sm">
-                        <div class="flex items-start space-x-2.5"><div class="bg-indigo-100 text-slate-800 p-2.5 rounded-lg max-w-[85%]">Hello! I am your <strong>Mzi AI Study Assistant</strong>. Ask me any question concerning Mathematics, Further Math, Physics, Computer Science, Chemistry, or Biology!</div></div>
+                    <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 text-sm md:text-base">
+                        <div class="flex items-start space-x-3"><div class="bg-indigo-100 border border-indigo-200/50 text-slate-900 p-4 rounded-2xl max-w-[88%] shadow-xs leading-relaxed font-medium">Hello! I am your updated <strong>Mzi AI Study Assistant</strong>. Ask me any scientific question or definition concerning Mathematics, Further Math, Physics, Computer Science, Chemistry, or Biology!</div></div>
                     </div>
-                    <div class="p-3 bg-white border-t flex space-x-2 items-center">
-                        <input type="text" id="ai-input" onkeydown="if(event.key==='Enter') sendAIQuestion()" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-indigo-600" placeholder="Ask a science or math question...">
-                        <button onclick="sendAIQuestion()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition cursor-pointer">Ask AI</button>
+                    <div class="p-3 bg-white border-t border-slate-200 flex space-x-3 items-center">
+                        <input type="text" id="ai-input" onkeydown="if(event.key==='Enter') sendAIQuestion()" class="flex-1 border-2 border-slate-200 rounded-xl px-4 py-3 text-base font-medium outline-none focus:border-indigo-600 transition" placeholder="Type your science question here...">
+                        <button onclick="sendAIQuestion()" class="px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-base font-black rounded-xl shadow-md transition active:scale-95 cursor-pointer">Ask AI</button>
                     </div>
                 </div>`,
             'quizzes': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Interactive Academic Quizzes</h2>
-                    <p class="text-xs text-slate-500 mb-6">Test your accuracy for Cameroon GCE Ordinary & Advanced Level exams.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 transition">
-                            <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">GCE A-Level</span>
-                            <h3 class="font-bold mt-2 text-slate-800">Pure Math Mechanics Quiz</h3>
-                            <p class="text-xs text-slate-400 mt-1">15 Multiple Choice Questions timed.</p>
-                            <button onclick="alert('Quiz space triggered!')" class="mt-4 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded transition cursor-pointer">Start Quiz</button>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Interactive Academic Quizzes</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Test your skills for Cameroon GCE Ordinary & Advanced Level examinations.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+                        <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-md">
+                            <span class="text-xs font-black text-amber-700 bg-amber-100 px-3 py-1 rounded-full uppercase tracking-wider">A-Level Pure Math</span>
+                            <h3 class="font-black mt-3 text-lg text-slate-900">Mechanics & Projectile Motion Quiz</h3>
+                            <p class="text-sm text-slate-500 mt-1 font-medium">15 Complex Multiple Choice Questions timed.</p>
+                            <button onclick="triggerPaperNotFound('Pure Math Mechanics & Projectiles Quiz Series')" class="mt-4 w-full sm:w-auto px-5 py-2.5 bg-indigo-600 text-white text-sm font-black rounded-xl shadow transition active:scale-95 cursor-pointer">Start Test</button>
                         </div>
                     </div>
                 </div>`,
             'past-papers': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">GCE Past Papers Base</h2>
-                    <p class="text-xs text-slate-500 mb-6">Access past question sets sorted by category.</p>
-                    <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-sm">
-                        <div class="p-4 flex justify-between items-center hover:bg-slate-50"><div class="pr-2"><p class="text-sm font-semibold text-slate-800">Further Math Paper 2 (2025)</p><p class="text-[10px] text-slate-400">Advanced Level</p></div><button class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs hover:bg-indigo-600 cursor-pointer">Download</button></div>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">GCE Past Papers Base</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">All national past paper modules are clickable below. Missing papers will explicitly show 'Not Found'.</p>
+                    <div class="bg-white rounded-2xl border-2 border-slate-200 divide-y-2 divide-slate-100 overflow-hidden shadow-md w-full">
+                        <div onclick="triggerPaperNotFound('Cameroon GCE A-Level Further Mathematics Paper 2 (2025)')" class="p-5 flex justify-between items-center hover:bg-slate-50 cursor-pointer active:bg-slate-100 transition space-x-3">
+                            <div class="min-w-0 flex-1"><p class="text-base font-bold text-indigo-950 truncate">Further Mathematics Paper 2 (2025)</p><p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-0.5">Advanced Level</p></div>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-black shrink-0 uppercase tracking-wide">View Paper</span>
+                        </div>
+                        <div onclick="triggerPaperNotFound('Cameroon GCE A-Level Physics Paper 2 (2024)')" class="p-5 flex justify-between items-center hover:bg-slate-50 cursor-pointer active:bg-slate-100 transition space-x-3">
+                            <div class="min-w-0 flex-1"><p class="text-base font-bold text-indigo-950 truncate">Physics Paper 2 (2024)</p><p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-0.5">Advanced Level</p></div>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-black shrink-0 uppercase tracking-wide">View Paper</span>
+                        </div>
+                        <div onclick="triggerPaperNotFound('Cameroon GCE O-Level Mathematics Paper 2 (2025)')" class="p-5 flex justify-between items-center hover:bg-slate-50 cursor-pointer active:bg-slate-100 transition space-x-3">
+                            <div class="min-w-0 flex-1"><p class="text-base font-bold text-indigo-950 truncate">Mathematics Paper 2 (2025)</p><p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-0.5">Ordinary Level</p></div>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-black shrink-0 uppercase tracking-wide">View Paper</span>
+                        </div>
                     </div>
                 </div>`,
             'mock-papers': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Regional Mock Past Papers</h2>
-                    <p class="text-xs text-slate-500 mb-6">Prep with specialized regional exam bundles from the Northwest, Southwest, and Littoral mocks.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-4 bg-white rounded-xl border shadow-sm">
-                            <h4 class="font-bold text-indigo-950 text-sm">Northwest Regional Mock Bundle</h4>
-                            <p class="text-xs text-slate-400 mt-1">Physics, Chemistry and Mathematics complete papers.</p>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Regional Mock Past Papers</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Prep with specialized regional mock exam bundles from the Northwest, Southwest, and Littoral branches.</p>
+                    <div class="bg-white rounded-2xl border-2 border-slate-200 divide-y-2 divide-slate-100 overflow-hidden shadow-md w-full">
+                        <div onclick="triggerPaperNotFound('Northwest Regional Mock Advanced Level Physics Complex Solution manual')" class="p-5 flex justify-between items-center hover:bg-slate-50 cursor-pointer active:bg-slate-100 transition space-x-3">
+                            <div class="min-w-0 flex-1"><p class="text-base font-bold text-indigo-950 truncate">Northwest Regional Mock - Physics Complete</p><p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-0.5">A-Level Bundle</p></div>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-black shrink-0 uppercase tracking-wide">View Paper</span>
+                        </div>
+                        <div onclick="triggerPaperNotFound('Southwest Regional Mock Advanced Level Further Mathematics compilation')" class="p-5 flex justify-between items-center hover:bg-slate-50 cursor-pointer active:bg-slate-100 transition space-x-3">
+                            <div class="min-w-0 flex-1"><p class="text-base font-bold text-indigo-950 truncate">Southwest Regional Mock - Further Math</p><p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-0.5">A-Level Bundle</p></div>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-black shrink-0 uppercase tracking-wide">View Paper</span>
                         </div>
                     </div>
                 </div>`,
             'concours': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1"><i class="fa-solid fa-graduation-cap text-indigo-600 mr-2"></i>Concours Preparation Desk</h2>
-                    <p class="text-xs text-slate-500 mb-6">Syllabus configurations and entrance sheets for elite professional establishments.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="bg-white p-4 rounded-xl border text-center shadow-sm"><div class="text-base font-bold text-indigo-700">ENSP Polytech</div><p class="text-[11px] text-slate-400 mt-0.5">Yaoundé / Maroua Engineering</p></div>
-                        <div class="bg-white p-4 rounded-xl border text-center shadow-sm"><div class="text-base font-bold text-red-600">CUSS</div><p class="text-[11px] text-slate-400 mt-0.5">Medical Science Entrances</p></div>
-                        <div class="bg-white p-4 rounded-xl border text-center shadow-sm"><div class="text-base font-bold text-emerald-600">HTTTC / HTTC</div><p class="text-[11px] text-slate-400 mt-0.5">Technical Teacher Training</p></div>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1"><i class="fa-solid fa-graduation-cap text-indigo-600 mr-2"></i>Concours Entrance Hub</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Click on any high-level Cameroonian university professional entrance file block below to view sheets.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+                        <div onclick="triggerPaperNotFound('ENSP Polytech Yaounde Engineering Entrance Past Exam Sheets')" class="bg-white p-5 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><div class="text-lg font-black text-indigo-700"><i class="fa-solid fa-gears block text-2xl mb-1 text-indigo-500"></i>ENSP Polytech</div><p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Engineering Entrance</p></div>
+                        <div onclick="triggerPaperNotFound('CUSS Medical School Selection Entrance Sheets')" class="bg-white p-5 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><div class="text-lg font-black text-red-600"><i class="fa-solid fa-heart-pulse block text-2xl mb-1 text-red-500"></i>CUSS Medical</div><p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Medical Sciences</p></div>
+                        <div onclick="triggerPaperNotFound('HTTTC / HTTC Technical Teachers Training Entrance Past Records')" class="bg-white p-5 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><div class="text-lg font-black text-emerald-700"><i class="fa-solid fa-chalkboard-user block text-2xl mb-1 text-emerald-500"></i>HTTTC / HTTC</div><p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Teacher Training</p></div>
                     </div>
                 </div>`,
             'video-lessons': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Video Lessons Board</h2>
-                    <p class="text-xs text-slate-500 mb-6">Watch whiteboard breakdowns of challenging subject topics.</p>
-                    <div class="bg-slate-900 aspect-video rounded-xl flex flex-col items-center justify-center text-white p-4 text-center">
-                        <i class="fa-solid fa-circle-play text-4xl text-amber-400 mb-2 animate-pulse cursor-pointer"></i>
-                        <p class="font-bold text-sm">Simple Harmonic Motion & Waves Physics</p>
-                        <p class="text-[10px] text-slate-400">Embed your future YouTube video streams or OpenBoard output links right here.</p>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Video Lessons Board</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Watch whiteboard breakdowns of challenging science topics.</p>
+                    <div class="bg-slate-950 aspect-video rounded-2xl flex flex-col items-center justify-center text-white p-5 text-center max-w-2xl mx-auto shadow-2xl border border-slate-800">
+                        <i onclick="alert('Whiteboard layout streaming portal triggered!')" class="fa-solid fa-circle-play text-5xl text-amber-400 mb-3 animate-pulse cursor-pointer"></i>
+                        <p class="font-black text-base md:text-lg text-amber-400">Simple Harmonic Motion & Waves Physics Tutorial</p>
+                        <p class="text-xs text-slate-400 mt-1 max-w-md font-medium">Click to configure your future YouTube streams or custom interactive OpenBoard video records output.</p>
                     </div>
                 </div>`,
             'library': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Digital Textbook Library</h2>
-                    <p class="text-xs text-slate-500 mb-6">Access specialized reference manuals and MINESEC textbooks.</p>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="bg-white p-4 rounded-lg border text-center shadow-sm hover:border-indigo-400 transition"><i class="fa-solid fa-book-open text-2xl text-indigo-500 mb-2"></i><p class="text-xs font-bold text-slate-700">Advanced Level Physics Handbook</p></div>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Digital Textbook Library</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Access recommended reference textbooks and handbooks instantly.</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                        <div onclick="triggerPaperNotFound('Advanced Level Physics Complete Student Handbook 2027 Edition')" class="bg-white p-4 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><i class="fa-solid fa-book-open text-3xl text-indigo-500 mb-2"></i><p class="text-xs font-black text-slate-800">A-Level Physics Handbook</p></div>
+                        <div onclick="triggerPaperNotFound('Comprehensive Pure Mathematics Reference Guide')" class="bg-white p-4 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><i class="fa-solid fa-book-open text-3xl text-emerald-500 mb-2"></i><p class="text-xs font-black text-slate-800">Pure Math Guide</p></div>
+                        <div onclick="triggerPaperNotFound('Further Mathematics Advanced Study Pamphlet')" class="bg-white p-4 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><i class="fa-solid fa-book-open text-3xl text-amber-500 mb-2"></i><p class="text-xs font-black text-slate-800">Further Math Manual</p></div>
+                        <div onclick="triggerPaperNotFound('Advanced Advanced Biology Reference Core Sheets')" class="bg-white p-4 rounded-2xl border-2 border-slate-200 text-center shadow-md cursor-pointer active:bg-slate-50 transition"><i class="fa-solid fa-book-open text-3xl text-rose-500 mb-2"></i><p class="text-xs font-black text-slate-800">Advanced Biology Manual</p></div>
                     </div>
                 </div>`,
             'competitions': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Online Peer Challenges</h2>
-                    <p class="text-xs text-slate-500 mb-6">Compete live with friends across Cameroon on real-time timed questions.</p>
-                    <div class="p-5 bg-indigo-50 border border-indigo-200 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div><h4 class="font-bold text-indigo-950 text-sm">Live Arena Challenge</h4><p class="text-xs text-indigo-600">Connect with active students online in real-time.</p></div>
-                        <button onclick="alert('Searching for competitors...')" class="px-4 py-2 bg-indigo-600 text-white font-bold text-xs rounded shadow cursor-pointer">Find a Match</button>
+                <div class="fade-in max-w-4xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Online Peer Challenges</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Compete live with friends across Cameroon on real-time timed science questions.</p>
+                    <div class="p-5 bg-indigo-50 border-2 border-indigo-200 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm">
+                        <div><h4 class="font-black text-indigo-950 text-base">Live Interactive Arena Challenge</h4><p class="text-sm text-indigo-600 font-medium">Connect with active students online right now.</p></div>
+                        <button onclick="alert('Searching for online competitors across Cameroonian servers...')" class="w-full sm:w-auto px-5 py-3 bg-indigo-600 text-white font-black text-sm rounded-xl shadow-md active:scale-95 cursor-pointer">Find a Match</button>
                     </div>
                 </div>`,
             'buy-papers': `
-                <div class="fade-in max-w-4xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Purchase Premium Solutions</h2>
-                    <p class="text-xs text-slate-500 mb-6">Download fully answered solution manuals compiled by expert examiners.</p>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm max-w-sm">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Solution Booklet</span>
-                        <h3 class="font-bold text-slate-800 text-base mt-0.5">GCE A-Level Physics Solutions (2021-2025)</h3>
+                <div class="fade-in max-w-xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Purchase Premium Solutions</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Download complete fully answered solution books compiled by expert examiners.</p>
+                    <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-lg max-w-sm mx-auto sm:mx-0">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-wider">Solution Booklet</span>
+                        <h3 class="font-black text-slate-900 text-base mt-1">GCE A-Level Physics Solutions (2021-2026)</h3>
                         <div class="mt-4 text-3xl font-black text-indigo-600" id="paper-price-display">FCFA 1,500</div>
-                        <button onclick="alert('Connecting to Mobile Money / Orange Money...')" class="mt-5 w-full py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider rounded transition cursor-pointer">Buy Document Now</button>
+                        <button onclick="alert('Connecting safely to Mobile Money / Orange Money payment gateway API...')" class="mt-5 w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm uppercase tracking-wider rounded-xl shadow-md active:scale-95 cursor-pointer">Buy Document Now</button>
                     </div>
                 </div>`,
             'contact': `
-                <div class="fade-in max-w-2xl bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm space-y-6">
-                    <div class="flex items-center space-x-4 border-b pb-4 border-slate-100">
-                        <div class="w-14 h-14 bg-indigo-600 text-white text-xl font-black rounded-full flex items-center justify-center">MZI</div>
+                <div class="fade-in max-w-2xl bg-white p-6 md:p-8 rounded-2xl border-2 border-slate-200 shadow-lg space-y-5 w-full">
+                    <div class="flex items-center space-x-4 border-b-2 pb-4 border-slate-100">
+                        <div class="w-12 h-12 bg-indigo-600 text-white text-base font-black rounded-full flex items-center justify-center shadow-md">MZI</div>
                         <div>
-                            <h2 class="text-xl font-bold text-slate-800">Mindako Z. Iko</h2>
-                            <p class="text-xs text-indigo-600 font-semibold">Founder, Lead Teacher & Developer</p>
+                            <h2 class="text-lg font-black text-slate-900">Mindako Z. Iko</h2>
+                            <p class="text-xs text-indigo-600 font-bold uppercase tracking-wide">Founder, Lead Teacher & Developer</p>
                         </div>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1">Platform Description</h4>
-                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-100 italic">
+                        <h4 class="text-xs font-black uppercase text-slate-400 tracking-wider mb-1.5">Platform Description</h4>
+                        <p class="text-slate-700 text-sm leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-200 italic font-medium">
                             “This educational platform is developed by an Electrical and Power Engineering student at the University of Buea, who is also a Mathematics and Physics teacher. The platform is created to simplify science and mathematics learning by providing organized lessons, quizzes, and past examination papers for students preparing for national and international exams.”
                         </p>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2">
-                        <div class="p-3 bg-indigo-50/50 rounded border"><span class="block text-slate-400 font-medium">Official Contact</span><span class="font-bold text-indigo-950">+237 678 44 01 35</span></div>
-                        <div class="p-3 bg-indigo-50/50 rounded border"><span class="block text-slate-400 font-medium">Email Channel</span><span class="font-bold text-indigo-950 break-all">mindakozachariaiko@gmail.com</span></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm">
+                        <div class="p-3.5 bg-indigo-50/50 rounded-xl border-2 border-indigo-100"><span class="block text-slate-400 text-xs font-bold uppercase tracking-wide">Official Contact</span><span class="font-black text-indigo-950 text-base">+237 678 44 01 35</span></div>
+                        <div class="p-3.5 bg-indigo-50/50 rounded-xl border-2 border-indigo-100"><span class="block text-slate-400 text-xs font-bold uppercase tracking-wide">Email Channel</span><span class="font-bold text-indigo-950 text-sm break-all">mindakozachariaiko@gmail.com</span></div>
                     </div>
                 </div>`,
             'settings': `
-                <div class="fade-in max-w-xl">
-                    <h2 class="text-xl font-bold text-slate-800 mb-1">Settings & Global Configuration</h2>
-                    <p class="text-xs text-slate-500 mb-6">Modify platform rates and features dynamically.</p>
-                    <div class="bg-white p-5 rounded-xl border space-y-6 shadow-sm">
+                <div class="fade-in max-w-xl w-full">
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Settings & Administration</h2>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Modify application variables and paper transaction rates dynamically.</p>
+                    <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 space-y-4 shadow-md">
                         <div>
-                            <h3 class="font-bold text-sm text-slate-700 mb-1"><i class="fa-solid fa-money-bill text-emerald-600 mr-1.5"></i> Dynamic Price Admin Controller</h3>
-                            <p class="text-[11px] text-slate-400 mb-3">Adjust the price displayed globally under the premium paper portal anytime.</p>
-                            <div class="flex space-x-2">
-                                <input type="number" id="new-price-input" class="border p-2 rounded text-sm w-36 outline-none border-slate-200 focus:border-indigo-600" value="1500">
-                                <button onclick="updatePrice()" class="px-4 py-2 bg-indigo-600 text-white rounded text-xs font-bold hover:bg-indigo-700 cursor-pointer">Apply Price</button>
+                            <h3 class="font-black text-sm text-slate-800 mb-1"><i class="fa-solid fa-money-bill text-emerald-600 mr-2 text-base"></i> Dynamic Price Admin Controller</h3>
+                            <p class="text-xs text-slate-400 mb-3 font-medium">Change the numeric pricing metric displayed under the premium booklet tab anytime.</p>
+                            <div class="flex space-x-3">
+                                <input type="number" id="new-price-input" class="border-2 border-slate-200 p-3 rounded-xl text-base font-bold w-32 outline-none focus:border-indigo-600 transition" value="1500">
+                                <button onclick="updatePrice()" class="px-5 py-3 bg-indigo-600 text-white rounded-xl text-sm font-black hover:bg-indigo-700 active:scale-95 transition cursor-pointer shadow-md">Apply Rate</button>
                             </div>
                         </div>
                     </div>
                 </div>`
         };
 
-        // Switch View Engine Routing Mechanism
+        // Routing Controller 
         function switchTab(tabKey) {
             const titles = {
                 'ai-chat': 'AI Student Assistant', 'quizzes': 'Interactive Quizzes', 'past-papers': 'GCE Past Papers',
@@ -303,14 +321,14 @@
             document.getElementById('current-portal-title').innerText = titles[tabKey] || 'mzi\'s sTudy Universe';
             document.getElementById('main-content').innerHTML = contents[tabKey];
 
-            // Highlight chosen button element inside layout navigation architecture
+            // Handle Tab Selection Highlights cleanly for touch screens
             const buttons = document.querySelectorAll('#sidebar-nav button');
             buttons.forEach(btn => {
                 if(btn.getAttribute('onclick').includes(`'${tabKey}'`)) {
-                    btn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg bg-indigo-800 text-white font-medium text-left cursor-pointer";
+                    btn.className = "nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl bg-indigo-800 text-white font-bold text-left text-base cursor-pointer shadow-md";
                     let icon = btn.querySelector('i'); if(icon) icon.className = icon.className.replace('text-indigo-400', 'text-amber-400');
                 } else {
-                    btn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-900/50 text-indigo-100 text-left cursor-pointer";
+                    btn.className = "nav-btn w-full flex items-center space-x-4 px-4 py-3.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 font-semibold text-left text-base cursor-pointer";
                     let icon = btn.querySelector('i'); if(icon) icon.className = icon.className.replace('text-amber-400', 'text-indigo-400');
                 }
             });
@@ -318,32 +336,44 @@
             if(tabKey === 'buy-papers') updatePriceDisplay();
             if(tabKey === 'settings') document.getElementById('new-price-input').value = premiumPaperPrice;
 
-            // Automatically contract screen sidebar on mobile selection click trigger
+            // Auto Close Hamburger drawer configuration on cell viewport selection clicks
             if (window.innerWidth < 1024) {
-                document.getElementById('sidebar').classList.add('hidden');
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('fixed', 'w-full', 'left-0');
                 document.getElementById('menu-icon').className = "fa-solid fa-bars";
             }
         }
 
-        // Toggle mobile sliding sidebar view block
+        // Toggle Drawer Screen Core Logic
         function toggleMobileMenu() {
             const sidebar = document.getElementById('sidebar');
             const menuIcon = document.getElementById('menu-icon');
             if(sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');
+                sidebar.classList.add('fixed', 'w-full', 'left-0');
                 menuIcon.className = "fa-solid fa-xmark";
             } else {
                 sidebar.classList.add('hidden');
+                sidebar.classList.remove('fixed', 'w-full', 'left-0');
                 menuIcon.className = "fa-solid fa-bars";
             }
         }
 
-        // Subject Horizontal Filtering Trigger Action 
-        function filterSubject(subject) {
-            alert(`Subject filter locked on: "${subject}". This action button is fully clickable; you can connect a data filtering loop script array block element here inside the source text code anytime.`);
+        // Trigger Missing Elements Pop up Dialog Box Modal
+        function triggerPaperNotFound(paperName) {
+            document.getElementById('modal-description-text').innerHTML = `The document <strong>"${paperName}"</strong> has not been added to the system database yet by Mindako Z. Iko. Please check back later!`;
+            document.getElementById('not-found-modal').classList.remove('hidden');
         }
 
-        // Native Native Web Share Action Endpoint
+        function closeModal() {
+            document.getElementById('not-found-modal').classList.add('hidden');
+        }
+
+        function filterSubject(subject) {
+            alert(`Subject filter locked on: "${subject}". This action button is fully clickable; you can connect your database arrays inside this function code.`);
+        }
+
         function shareWebsite() {
             if (navigator.share) {
                 navigator.share({
@@ -352,16 +382,15 @@
                     url: window.location.href
                 }).catch(console.error);
             } else {
-                alert("Site configuration link URL copied to your device system clipboard! Share it on your WhatsApp groups!");
+                alert("Site configuration address link copied to clipboard system track!");
             }
         }
 
-        // Live Local Platform Pricing Variables Mutator 
         function updatePrice() {
             const value = document.getElementById('new-price-input').value;
             if(value && !isNaN(value)) {
                 premiumPaperPrice = parseInt(value);
-                alert(`Dynamic system modification complete! Document bundle price is now set to: FCFA ${premiumPaperPrice.toLocaleString()}`);
+                alert(`System Modification Complete! Global booklet price set to: FCFA ${premiumPaperPrice.toLocaleString()}`);
             }
         }
 
@@ -370,44 +399,42 @@
             if(display) display.innerText = `FCFA ${premiumPaperPrice.toLocaleString()}`;
         }
 
-        // FULLY WORKING LOCAL AI ENGINE ALGORITHM DOCK
+        // ROBUST NATURAL PROCESSING ALGORITHM FOR THE BUILT-IN AI CHATBOT
         function sendAIQuestion() {
             const inputEl = document.getElementById('ai-input');
             const chatBox = document.getElementById('chat-box');
             const question = inputEl.value.trim();
             if(!question) return;
 
-            // Display Student message block inside the container
-            chatBox.innerHTML += `<div class="flex items-start justify-end space-x-2.5"><div class="bg-indigo-600 text-white p-2.5 rounded-lg max-w-[85%]">${question}</div></div>`;
+            chatBox.innerHTML += `<div class="flex items-start justify-end space-x-2"><div class="bg-indigo-600 text-white p-3 rounded-2xl max-w-[85%] font-medium text-left shadow-sm">${question}</div></div>`;
             inputEl.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Generate an instant precise response tailored to high-school/undergraduate syllabus fields
+            // Advanced parsing sequence loop simulation returning structured definitions
             setTimeout(() => {
-                let lowerQuestion = question.toLowerCase();
-                let aiResponse = "I have received your science question! Let me check the Cameroon GCE/Concours past records database guidelines to answer this correctly for you shortly. For specific complex mathematical derivations or handbook materials, you can also write to Mindako Z. Iko directly via the contact portal.";
+                let lower = question.toLowerCase();
+                let reply = "I have received your question! Let me parse my learning data to answer this completely according to the standard syllabus. For complete complex mathematical derivations or custom physics handbooks, you can also send a direct query message to Mindako Z. Iko via the info channel tab.";
 
-                if (lowerQuestion.includes('physics') || lowerQuestion.includes('force') || lowerQuestion.includes('shm') || lowerQuestion.includes('velocity') || lowerQuestion.includes('acceleration')) {
-                    aiResponse = "<strong>Physics Analysis:</strong> Remember that in Simple Harmonic Motion (SHM), acceleration is always directly proportional to displacement from the equilibrium point and directed towards it: $a = -\\omega^2 x$. Let me know if you need to calculate the time period, frequency, or velocity parameters for this system!";
-                } else if (lowerQuestion.includes('math') || lowerQuestion.includes('equation') || lowerQuestion.includes('integral') || lowerQuestion.includes('derivative') || lowerQuestion.includes('matrix')) {
-                    aiResponse = "<strong>Mathematics Solution Track:</strong> To solve or differentiate an algebraic equation or calculus limit form, identify the independent variable first. For instance, $\\frac{d}{dx}(\\sin(x)) = \\cos(x)$. If you are evaluating a Further Math mechanics or pure math logic query, specify the boundary conditions!";
-                } else if (lowerQuestion.includes('chemistry') || lowerQuestion.includes('reaction') || lowerQuestion.includes('acid') || lowerQuestion.includes('organic')) {
-                    aiResponse = "<strong>Chemistry Advisory:</strong> When analyzing reaction pathways, remember that organic chemistry mechanism profiles depend closely on electrophilic additions or nucleophilic substitutions ($S_N1$ vs $S_N2$). Ensure your oxidation states match completely across balanced chemical equations.";
-                } else if (lowerQuestion.includes('computer') || lowerQuestion.includes('binary') || lowerQuestion.includes('code') || lowerQuestion.includes('html') || lowerQuestion.includes('gate')) {
-                    aiResponse = "<strong>Computer Science Module:</strong> Computer architecture functions on boolean logic operations (AND, OR, NOT, NAND). If you are looking at algorithm optimization loops or networking packet rules for GCE Paper 2 section requirements, let me know!";
-                } else if (lowerQuestion.includes('biology') || lowerQuestion.includes('cell') || lowerQuestion.includes('dna') || lowerQuestion.includes('respiration')) {
-                    aiResponse = "<strong>Biology Framework:</strong> Cellular processes like respiration or photosynthesis are governed by enzymatic pathways. Remember that aerobic respiration yields approximately 36-38 ATP molecules per molecule of glucose oxidized through glycolysis, the Krebs cycle, and the electron transport chain.";
+                if (lower.includes('physics') || lower.includes('force') || lower.includes('shm') || lower.includes('velocity') || lowerQuestion.includes('motion') || lowerQuestion.includes('wave')) {
+                    reply = "<strong>Physics AI Assistant:</strong> For high-school mechanics frameworks, keep track of fundamental laws. In Simple Harmonic Motion (SHM), acceleration is modeled as $a = -\\omega^2 x$. For waves, the velocity parameters follow $v = f\\lambda$. Let me know if you need to calculate periods or energy distributions!";
+                } else if (lower.includes('math') || lower.includes('equation') || lower.includes('integral') || lower.includes('derivative') || lower.includes('calculus') || lower.includes('algebra')) {
+                    reply = "<strong>Mathematics AI Assistant:</strong> To evaluate limits or calculate derivatives, isolate structural constants first. For basic calculus functions, $\\frac{d}{dx}(\\sin(x)) = \\cos(x)$ and $\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$. Tell me if you are looking at a Pure Math matrix or a Further Math mechanics problem!";
+                } else if (lower.includes('chemistry') || lower.includes('reaction') || lower.includes('acid') || lower.includes('organic') || lower.includes('periodic')) {
+                    reply = "<strong>Chemistry AI Assistant:</strong> Remember that reaction mechanisms follow clean structural pathways. For instance, Organic Chemistry conversions evaluate electrophilic addition reactions across carbon-carbon double bonds, or track nucleophilic substitutions ($S_N1$ and $S_N2$) depending heavily on steric hindrance parameters.";
+                } else if (lower.includes('computer') || lower.includes('binary') || lower.includes('gate') || lower.includes('html') || lower.includes('code') || lower.includes('algorithm')) {
+                    reply = "<strong>Computer Science AI Assistant:</strong> Computational logic functions rely on fundamental Boolean expressions (AND, OR, NOT, NAND, XOR). If you are optimizing sorting algorithm loops, designing data structures, or matching standard network layers for GCE Paper 2, provide the code specifications!";
+                } else if (lower.includes('biology') || lower.includes('cell') || lower.includes('dna') || lower.includes('respiration') || lower.includes('mitosis')) {
+                    reply = "<strong>Biology AI Assistant:</strong> Cellular biological processes are completely driven by enzymatic triggers. Cellular respiration converts glucose into raw ATP within mitochondria matrices across glycolysis steps and the Krebs cycle. If you are tracking genetic replication rules or cell division phases, specify the topic!";
                 }
 
-                chatBox.innerHTML += `<div class="flex items-start space-x-2.5"><div class="bg-indigo-100 text-slate-800 p-2.5 rounded-lg max-w-[85%]">${aiResponse}</div></div>`;
+                chatBox.innerHTML += `<div class="flex items-start space-x-2"><div class="bg-indigo-100 border border-indigo-200/40 text-slate-900 p-3.5 rounded-2xl max-w-[85%] font-medium text-left shadow-xs">${reply}</div></div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600);
+            }, 500);
         }
 
-        // Boot system dashboard display view on start
         window.onload = function() {
             switchTab('ai-chat');
         };
     </script>
 </body>
-              </html> 
+    </html>
