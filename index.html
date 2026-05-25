@@ -883,4 +883,25 @@ function answer(){
 
 </body>
 </html> 
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
 
+// attach click events properly
+document.querySelectorAll("nav button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    show(btn.dataset.target);
+  });
+});
+
+// AI tutor (simple demo)
+function answer(){
+  let q = document.getElementById("question").value;
+  document.getElementById("response").innerText =
+    "AI Tutor Response: " + (q ? "Work step by step on: " + q : "Ask a question first.");
+}
+</script> 
