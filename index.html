@@ -1,461 +1,356 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MZ Study Universe</title>
-
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: white;
-    }
-
-    header {
-        background: #1e293b;
-        padding: 20px;
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .card {
-        background: #1e293b;
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        background: #334155;
-    }
-
-    .card h3 {
-        margin-bottom: 10px;
-    }
-
-    button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        background: #38bdf8;
-        color: black;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
-    button:hover {
-        background: #0ea5e9;
-    }
-
-    .section {
-        display: none;
-        padding: 20px;
-    }
-
-    .active {
-        display: block;
-    }
-
-    footer {
-        text-align: center;
-        padding: 20px;
-        background: #1e293b;
-        margin-top: 20px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mzi's sTudy Universe</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom smooth transition animations */
+        .nav-btn {
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-btn:hover {
+            transform: translateX(5px);
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
+<body class="bg-slate-50 font-sans text-slate-800 flex h-screen overflow-hidden">
 
-<body>
-
-<header>
-    MZ STUDY UNIVERSE
-</header>
-
-<!-- HOME -->
-<div id="home" class="section active">
-    <div class="container">
-
-        <div class="card" onclick="openSection('math')">
-            <h3>Mathematics</h3>
-            <button>Enter</button>
+    <aside class="w-72 bg-gradient-to-b from-indigo-900 to-slate-900 text-white flex flex-col shadow-xl">
+        <div class="p-6 border-b border-indigo-800/50 flex flex-col items-center text-center">
+            <svg class="w-16 h-16 text-amber-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.738.09-1.455.257-2.147m15.686 0z"></path>
+            </svg>
+            <h1 class="text-xl font-bold tracking-wider uppercase text-amber-400">mzi's sTudy Universe</h1>
+            <p class="text-xs text-indigo-200 mt-1 italic">Mapping Knowledge Globally, Rooted in Cameroon</p>
         </div>
 
-        <div class="card" onclick="openSection('compmath')">
-            <h3>Computer Mathematics</h3>
-            <button>Enter</button>
-        </div>
+        <nav class="flex-1 overflow-y-auto p-4 space-y-1.5" id="sidebar-nav">
+            <p class="text-xs font-semibold text-indigo-300 uppercase px-3 mb-2 tracking-wider">Main Academic Hub</p>
+            
+            <button onclick="switchTab('quizzes')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg bg-indigo-800 text-white font-medium text-left">
+                <i class="fa-solid fa-brain w-5 text-amber-400"></i> <span>Interactive Quizzes</span>
+            </button>
+            
+            <button onclick="switchTab('past-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-file-invoice w-5 text-indigo-400"></i> <span>GCE Past Papers</span>
+            </button>
 
-        <div class="card" onclick="openSection('physics')">
-            <h3>Physics</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('mock-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-file-signature w-5 text-indigo-400"></i> <span>Regional Mock Papers</span>
+            </button>
 
-        <div class="card" onclick="openSection('chemistry')">
-            <h3>Chemistry</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('concours')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-graduation-cap w-5 text-indigo-400"></i> <span>Concours Prep (ENSP, CUSS...)</span>
+            </button>
 
-        <div class="card" onclick="openSection('biology')">
-            <h3>Biology</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('video-lessons')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-video w-5 text-indigo-400"></i> <span>Video Lessons</span>
+            </button>
 
-        <div class="card" onclick="openSection('quizzes')">
-            <h3>Quizzes</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('library')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-book-open w-5 text-indigo-400"></i> <span>Digital Library / Textbooks</span>
+            </button>
 
-        <div class="card" onclick="openSection('gce')">
-            <h3>GCSE Papers</h3>
-            <button>Enter</button>
-        </div>
+            <p class="text-xs font-semibold text-indigo-300 uppercase px-3 pt-4 mb-2 tracking-wider">Interactive & Commerce</p>
 
-        <div class="card" onclick="openSection('concours')">
-            <h3>Concours</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('competitions')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-gamepad w-5 text-indigo-400"></i> <span>Online Friend Competitions</span>
+            </button>
 
-        <div class="card" onclick="openSection('pastpapers')">
-            <h3>Past Papers</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('buy-papers')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-cart-shopping w-5 text-indigo-400"></i> <span>Buy Premium Papers</span>
+            </button>
 
-        <div class="card" onclick="openSection('contact')">
-            <h3>Contact Info</h3>
-            <button>Enter</button>
-        </div>
+            <p class="text-xs font-semibold text-indigo-300 uppercase px-3 pt-4 mb-2 tracking-wider">Information</p>
 
-        <div class="card" onclick="openSection('share')">
-            <h3>Share Site</h3>
-            <button>Enter</button>
-        </div>
+            <button onclick="switchTab('contact')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-envelope w-5 text-indigo-400"></i> <span>Contact Information</span>
+            </button>
 
+            <button onclick="switchTab('settings')" class="nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left">
+                <i class="fa-solid fa-sliders w-5 text-indigo-400"></i> <span>Settings & Admin panel</span>
+            </button>
+        </nav>
+        
+        <div class="p-4 border-t border-indigo-800/50 text-center text-xs text-indigo-300">
+            &copy; 2026 mzi's sTudy Universe.
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shadow-sm">
+            <div class="flex items-center space-x-3">
+                <span class="text-sm font-medium text-slate-500">Active Portal:</span>
+                <span id="current-portal-title" class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-semibold tracking-wide uppercase">Interactive Quizzes</span>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="shareWebsite()" class="flex items-center space-x-2 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-sm font-medium rounded-lg transition shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Share App</span>
+                </button>
+                
+                <div class="h-6 w-px bg-slate-200"></div>
+
+                <button onclick="switchTab('about-me')" class="flex items-center space-x-3 hover:bg-slate-50 p-1.5 rounded-lg transition text-left cursor-pointer">
+                    <div class="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-inner">
+                        MZ
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-800 leading-tight">Mzi (Admin)</p>
+                        <p class="text-xs text-slate-500">About Me / Bio</p>
+                    </div>
+                </button>
+            </div>
+        </header>
+
+        <section class="bg-white border-b border-slate-200 px-8 py-3 flex items-center space-x-3 overflow-x-auto whitespace-nowrap">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Quick Subjects:</span>
+            <button onclick="filterSubject('Mathematics')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Mathematics</button>
+            <button onclick="filterSubject('Computer Science')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Computer Science</button>
+            <button onclick="filterSubject('Further Mathematics')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Further Math</button>
+            <button onclick="filterSubject('Chemistry')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Chemistry</button>
+            <button onclick="filterSubject('Physics')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Physics</button>
+            <button onclick="filterSubject('Biology')" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 hover:bg-indigo-600 hover:text-white transition cursor-pointer">Biology</button>
+        </section>
+
+        <main class="flex-1 overflow-y-auto p-8 bg-slate-50" id="main-content">
+            </main>
     </div>
-</div>
 
-<!-- SUBJECT SECTIONS -->
-<div id="math" class="section">
-    <h2>Mathematics</h2>
-    <p>Content will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+    <script>
+        // Store paper price dynamically
+        let premiumPaperPrice = 1500; 
 
-<div id="compmath" class="section">
-    <h2>Computer Mathematics</h2>
-    <p>Content will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        // Subject content definitions to quickly inject data
+        const contents = {
+            'quizzes': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Interactive Quizzes</h2>
+                    <p class="text-slate-600 mb-6">Test your accuracy for Cameroon GCE Ordinary & Advanced Level exams.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 transition">
+                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">GCE A-Level</span>
+                            <h3 class="text-lg font-bold mt-2">Pure Math Mechanics Quiz</h3>
+                            <p class="text-sm text-slate-500 mt-1">15 Multiple Choice Questions timed.</p>
+                            <button onclick="alert('Quiz starting... (You can write your quiz logic here later)')" class="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded-lg transition cursor-pointer">Start Quiz</button>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 transition">
+                            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">GCE O-Level</span>
+                            <h3 class="text-lg font-bold mt-2">Computer Logic Gates</h3>
+                            <p class="text-sm text-slate-500 mt-1">10 True/False and MCQ combinations.</p>
+                            <button onclick="alert('Quiz starting...')" class="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded-lg transition cursor-pointer">Start Quiz</button>
+                        </div>
+                    </div>
+                    <div class="mt-8 border-2 border-dashed border-slate-300 rounded-xl p-6 text-center text-slate-400">
+                        <i class="fa-solid fa-circle-plus text-3xl mb-2"></i>
+                        <p class="text-sm font-medium">Future Quizzes Placeholder</p>
+                        <p class="text-xs">You can safely add more quiz objects inside the HTML/JS code block here anytime.</p>
+                    </div>
+                </div>`,
+            'past-papers': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">GCE Past Papers Hub</h2>
+                    <p class="text-slate-600 mb-6 font-medium text-sm">Access general past papers database organized by subjects.</p>
+                    <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-sm">
+                        <div class="p-4 flex justify-between items-center hover:bg-slate-50">
+                            <div><p class="font-semibold">Further Mathematics Paper 2 (2025)</p><p class="text-xs text-slate-400">Advanced Level</p></div>
+                            <button class="px-3 py-1 bg-slate-800 text-white rounded text-xs hover:bg-indigo-600 cursor-pointer">Download PDF</button>
+                        </div>
+                        <div class="p-4 flex justify-between items-center hover:bg-slate-50">
+                            <div><p class="font-semibold">Chemistry Paper 1 (2024)</p><p class="text-xs text-slate-400">Ordinary Level</p></div>
+                            <button class="px-3 py-1 bg-slate-800 text-white rounded text-xs hover:bg-indigo-600 cursor-pointer">Download PDF</button>
+                        </div>
+                    </div>
+                </div>`,
+            'mock-papers': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Regional Mock Exam Papers</h2>
+                    <p class="text-slate-600 mb-6">Prep with specialized Northwest Mock, Southwest Mock, and Littoral mock examinations.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><h3 class="font-bold text-indigo-900">Northwest Regional Mock</h3><p class="text-xs text-slate-500 mt-1">Physics, Chemistry, Biology bundles available.</p></div>
+                        <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><h3 class="font-bold text-indigo-900">Southwest Regional Mock</h3><p class="text-xs text-slate-500 mt-1">Maths and Further Math keys.</p></div>
+                    </div>
+                </div>`,
+            'concours': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Cameroon Concours Entrance Prep</h2>
+                    <p class="text-slate-600 mb-6">Syllabus trackers and entry past questions for national major institutions.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-xl border text-center"><div class="text-xl font-bold text-indigo-600">ENSP</div><p class="text-xs text-slate-500 mt-1">Polytech Yaoundé / Maroua</p></div>
+                        <div class="bg-white p-4 rounded-xl border text-center"><div class="text-xl font-bold text-red-600">CUSS</div><p class="text-xs text-slate-500 mt-1">Faculty of Medicine</p></div>
+                        <div class="bg-white p-4 rounded-xl border text-center"><div class="text-xl font-bold text-emerald-600">HTTTC / HTTC</div><p class="text-xs text-slate-500 mt-1">Bambili / Kumba Teachers College</p></div>
+                    </div>
+                </div>`,
+            'video-lessons': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Video Lessons Hub</h2>
+                    <p class="text-slate-600 mb-6">Watch conceptual video tutorials on high-level topics.</p>
+                    <div class="bg-slate-800 aspect-video rounded-xl flex flex-col items-center justify-center text-white p-6 shadow-md">
+                        <i class="fa-solid fa-circle-play text-5xl text-amber-400 mb-3 animate-pulse cursor-pointer"></i>
+                        <p class="font-semibold text-lg">Organic Chemistry Reactions Mechanisms</p>
+                        <p class="text-xs text-slate-400 mt-1">Future video embedding dashboard (YouTube/Vimeo frames go here).</p>
+                    </div>
+                </div>`,
+            'library': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Digital Textbook Library</h2>
+                    <p class="text-slate-600 mb-6">Direct access read-only or download textbooks recommended by MINESEC.</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-white p-3 rounded-lg border text-center shadow-sm"><i class="fa-solid fa-book text-3xl text-indigo-500 mb-2"></i><p class="text-xs font-bold">Advanced Level Biology</p></div>
+                        <div class="bg-white p-3 rounded-lg border text-center shadow-sm"><i class="fa-solid fa-book text-3xl text-emerald-500 mb-2"></i><p class="text-xs font-bold">Computer Architecture v2</p></div>
+                    </div>
+                </div>`,
+            'competitions': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Online Peer-to-Peer Competitions</h2>
+                    <p class="text-slate-600 mb-6">Challenge your classmates online live to a 10-question rapid physics or math face-off.</p>
+                    <div class="p-6 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-between">
+                        <div><h4 class="font-bold text-indigo-900">Ready to play live?</h4><p class="text-xs text-indigo-700">Connects you with randomly matching online students in Douala, Yaoundé, Buea or Bamenda.</p></div>
+                        <button onclick="alert('Searching for active players... (Integrate web-sockets here)')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg cursor-pointer">Find a Friend Match</button>
+                    </div>
+                </div>`,
+            'buy-papers': `
+                <div class="fade-in max-w-4xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Buy Premium Answer Keys</h2>
+                    <p class="text-slate-600 mb-6">Get verified step-by-step detailed corrections drafted by elite Cameroon internal examiners.</p>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm max-w-sm">
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400">Complete Document Bundle</div>
+                        <h3 class="text-xl font-bold text-slate-800 mt-1">2021-2025 Further Math Answer Guide</h3>
+                        <div class="mt-4 text-3xl font-black text-indigo-600" id="paper-price-display">FCFA 1,500</div>
+                        <p class="text-xs text-slate-400 mt-1">Price fully dynamic and modifiable via admin setting panel.</p>
+                        <button onclick="alert('Redirecting to Mobile Money / Orange Money API gateway...')" class="mt-6 w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs uppercase tracking-widest rounded-lg transition cursor-pointer">Buy Paper Now</button>
+                    </div>
+                </div>`,
+            'contact': `
+                <div class="fade-in max-w-xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Contact Information</h2>
+                    <p class="text-slate-600 mb-6">Have problems? Reach out to "mzi's sTudy Universe" support desk.</p>
+                    <form onsubmit="event.preventDefault(); alert('Message sent!');" class="space-y-4 bg-white p-6 rounded-xl border">
+                        <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Name</label><input type="text" class="w-full border p-2 rounded text-sm outline-indigo-600" placeholder="John Ndi" required></div>
+                        <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Email / Phone</label><input type="text" class="w-full border p-2 rounded text-sm outline-indigo-600" placeholder="+237 ..." required></div>
+                        <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Message</label><textarea class="w-full border p-2 rounded text-sm h-24 outline-indigo-600" placeholder="Type your educational inquiry..." required></textarea></div>
+                        <button class="px-4 py-2 bg-slate-900 text-white rounded text-xs font-medium hover:bg-indigo-600 cursor-pointer">Send message</button>
+                    </form>
+                </div>`,
+            'about-me': `
+                <div class="fade-in max-w-2xl bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-indigo-600 text-white font-black text-2xl rounded-full flex items-center justify-center">MZ</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">About the Founder (Mzi)</h2>
+                            <p class="text-sm text-indigo-600 font-medium">Lead Administrator & Tech Educator</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Welcome to <strong>mzi's sTudy Universe</strong>. This application was built to bring structured high-quality access to Mathematics, Further Math, Computer Science, and Core Sciences for students across Cameroon.
+                    </p>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        You can update this profile description section inside the HTML script tags anytime you want to tell your users more about your accomplishments!
+                    </p>
+                </div>`,
+            'settings': `
+                <div class="fade-in max-w-xl">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Settings & Global Management</h2>
+                    <p class="text-slate-600 mb-6">Modify live application states dynamically below.</p>
+                    <div class="bg-white p-6 rounded-xl border space-y-6">
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-700 mb-1"><i class="fa-solid fa-money-bill text-emerald-600 mr-2"></i> Dynamic Price Admin Controller</h3>
+                            <p class="text-xs text-slate-400 mb-3">Change the paper premium checkout amount displayed globally on the app instantly.</p>
+                            <div class="flex space-x-2">
+                                <input type="number" id="new-price-input" class="border p-2 rounded text-sm w-36 outline-none border-slate-300 focus:border-indigo-600" value="1500">
+                                <button onclick="updatePrice()" class="px-4 py-2 bg-indigo-600 text-white rounded text-xs font-bold hover:bg-indigo-700 cursor-pointer">Apply New Amount</button>
+                            </div>
+                        </div>
+                        <hr class="border-slate-100">
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-700 mb-1">System Language</h3>
+                            <select class="border p-1.5 rounded text-xs bg-slate-50"><option>English (Cameroon GCE subsystem)</option><option disabled>French (Subsystème Francophone)</option></select>
+                        </div>
+                    </div>
+                </div>`
+        };
 
-<div id="physics" class="section">
-    <h2>Physics</h2>
-    <p>Content will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        // Switch Tab Routing Engine
+        function switchTab(tabKey) {
+            // Update Active Portal top heading label text line
+            const formattedTitles = {
+                'quizzes': 'Interactive Quizzes', 'past-papers': 'GCE Past Papers', 'mock-papers': 'Regional Mock Papers',
+                'concours': 'Concours Prep (ENSP, CUSS...)', 'video-lessons': 'Video Lessons', 'library': 'Digital Library / Textbooks',
+                'competitions': 'Online Friend Competitions', 'buy-papers': 'Buy Premium Papers', 'contact': 'Contact Information',
+                'settings': 'Settings & Admin panel', 'about-me': 'Founder Bio / About Me'
+            };
+            document.getElementById('current-portal-title').innerText = formattedTitles[tabKey] || 'mzi\'s sTudy Universe';
 
-<div id="chemistry" class="section">
-    <h2>Chemistry</h2>
-    <p>Content will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+            // Swap out inner HTML content dynamically
+            document.getElementById('main-content').innerHTML = contents[tabKey];
 
-<div id="biology" class="section">
-    <h2>Biology</h2>
-    <p>Content will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+            // Update UI sidebar styles classes to make current selection visible
+            const buttons = document.querySelectorAll('#sidebar-nav button');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(`'${tabKey}'`)) {
+                    btn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg bg-indigo-800 text-white font-medium text-left";
+                    let icon = btn.querySelector('i');
+                    if(icon) { icon.classList.remove('text-indigo-400'); icon.classList.add('text-amber-400'); }
+                } else {
+                    btn.className = "nav-btn w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg hover:bg-indigo-800/50 text-indigo-100 text-left";
+                    let icon = btn.querySelector('i');
+                    if(icon) { icon.classList.remove('text-amber-400'); icon.classList.add('text-indigo-400'); }
+                }
+            });
 
-<div id="quizzes" class="section">
-    <h2>Quizzes</h2>
-    <p>Quiz system will be added here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+            // Update dynamic pricing content injection if loaded
+            if(tabKey === 'buy-papers') { updatePriceDisplay(); }
+            if(tabKey === 'settings') { document.getElementById('new-price-input').value = premiumPaperPrice; }
+        }
 
-<div id="gce" class="section">
-    <h2>GCSE Papers</h2>
-    <p>Download or view papers here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        // Subject Top Banner filtering alert triggers
+        function filterSubject(subjectName) {
+            alert(`Filtering all active dashboard categories for: "${subjectName}". You can hook up a database search query logic array here in the future.`);
+        }
 
-<div id="concours" class="section">
-    <h2>Concours</h2>
-    <p>Concours materials here.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        // Global native Web Share action API trigger 
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "mzi's sTudy Universe",
+                    text: 'Check out this platform for Cameroon GCE, Mocks, and Concours preparation!',
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("Share link copied to clipboard! Share it with friends on WhatsApp!");
+            }
+        }
 
-<div id="pastpapers" class="section">
-    <h2>Past Papers</h2>
-    <p>Past papers collection.</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        // Live variable dynamic modifier engine functions
+        function updatePrice() {
+            const inputVal = document.getElementById('new-price-input').value;
+            if(inputVal && !isNaN(inputVal)) {
+                premiumPaperPrice = parseInt(inputVal);
+                alert(`Success! Global papers checkout amount updated to: FCFA ${premiumPaperPrice.toLocaleString()}`);
+            }
+        }
 
-<div id="contact" class="section">
-    <h2>Contact Information</h2>
-    <p>Email: youremail@example.com</p>
-    <p>Phone: +237 XXX XXX XXX</p>
-    <button onclick="backHome()">Back</button>
-</div>
+        function updatePriceDisplay() {
+            const element = document.getElementById('paper-price-display');
+            if(element) { element.innerText = `FCFA ${premiumPaperPrice.toLocaleString()}`; }
+        }
 
-<div id="share" class="section">
-    <h2>Share This Site</h2>
-    <p>Share your website with others.</p>
-    <button onclick="shareSite()">Share</button>
-    <button onclick="backHome()">Back</button>
-</div>
-
-<footer>
-    © 2026 MZ Study Universe
-</footer>
-
-<script>
-function openSection(id) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-
-function backHome() {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById('home').classList.add('active');
-}
-
-function shareSite() {
-    if (navigator.share) {
-        navigator.share({
-            title: "MZ Study Universe",
-            url: window.location.href
-        });
-    } else {
-        alert("Copy link: " + window.location.href);
-    }
-}
-        </script> 
-
+        // Initialize App Main Window on Screen Startup Default
+        window.onload = function() {
+            switchTab('quizzes');
+        };
+    </script>
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MZ Study Universe</title>
-
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: radial-gradient(circle at top, #0f172a, #020617);
-        color: white;
-        overflow-x: hidden;
-    }
-
-    /* HEADER */
-    header {
-        padding: 20px;
-        text-align: center;
-        font-size: 26px;
-        font-weight: bold;
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    /* GRID DASHBOARD */
-    .dashboard {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        padding: 30px;
-        animation: fadeIn 1s ease-in;
-    }
-
-    /* CARDS */
-    .card {
-        background: rgba(30, 41, 59, 0.85);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 15px;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .card:hover {
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 0 25px rgba(56,189,248,0.5);
-    }
-
-    /* ANIMATION GLOW */
-    .card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(56,189,248,0.2), transparent 60%);
-        transform: rotate(0deg);
-        animation: rotateGlow 6s linear infinite;
-    }
-
-    @keyframes rotateGlow {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .card h3 {
-        position: relative;
-        z-index: 2;
-        margin-bottom: 10px;
-    }
-
-    button {
-        padding: 10px 14px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        background: #38bdf8;
-        font-weight: bold;
-        position: relative;
-        z-index: 2;
-    }
-
-    button:hover {
-        background: #0ea5e9;
-    }
-
-    /* AI TUTOR SPECIAL CARD */
-    .ai {
-        grid-column: span 2;
-        background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
-        color: white;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* FLOATING BACKGROUND EFFECT */
-    .bubble {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(56,189,248,0.15);
-        animation: float 10s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-40px); }
-        100% { transform: translateY(0); }
-    }
-
-</style>
-</head>
-
-<body>
-
-<header>
-    MZ STUDY UNIVERSE DASHBOARD
-</header>
-
-<!-- Floating decorations -->
-<div class="bubble" style="width:80px;height:80px;top:10%;left:5%"></div>
-<div class="bubble" style="width:120px;height:120px;top:50%;left:80%"></div>
-<div class="bubble" style="width:60px;height:60px;top:70%;left:20%"></div>
-
-<div class="dashboard">
-
-    <div class="card" onclick="alert('Math Section')">
-        <h3>Mathematics</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Computer Math')">
-        <h3>Computer Mathematics</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Physics')">
-        <h3>Physics</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Chemistry')">
-        <h3>Chemistry</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Biology')">
-        <h3>Biology</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Quizzes System')">
-        <h3>Quizzes</h3>
-        <button>Start</button>
-    </div>
-
-    <div class="card" onclick="alert('GCSE Papers')">
-        <h3>GCSE Papers</h3>
-        <button>View</button>
-    </div>
-
-    <div class="card" onclick="alert('Concours Section')">
-        <h3>Concours</h3>
-        <button>Enter</button>
-    </div>
-
-    <div class="card" onclick="alert('Past Papers')">
-        <h3>Past Papers</h3>
-        <button>Open</button>
-    </div>
-
-    <div class="card" onclick="alert('Contact Info')">
-        <h3>Contact</h3>
-        <button>View</button>
-    </div>
-
-    <div class="card" onclick="alert('Share Site')">
-        <h3>Share</h3>
-        <button>Share</button>
-    </div>
-
-    <!-- AI TUTOR -->
-    <div class="card ai" onclick="openAI()">
-        <h3>AI TUTOR PROFESSIONAL</h3>
-        <p>Ask questions in Physics, Math, Chemistry, Biology instantly</p>
-        <button>Start AI Tutor</button>
-    </div>
-
-</div>
-
-<script>
-function openAI() {
-    alert("AI Tutor is ready (next upgrade can connect real AI API)");
-}
-</script>
-
-</body>
-                        </html> 
+                </html>
