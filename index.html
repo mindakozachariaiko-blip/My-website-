@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 text-sm md:text-base">
-                    <div class="flex items-start space-x-3"><div class="bg-indigo-100 border border-indigo-200/50 text-slate-950 p-4 rounded-2xl max-w-[88%] shadow-xs font-medium leading-relaxed">Hello! I am your updated <strong>Mzi AI Assistant</strong>. Send me any scientific, mechanical, or mathematical prompt and I will provide comprehensive answers immediately!</div></div>
+                    <div class="flex items-start space-x-3"><div class="bg-indigo-100 border border-indigo-200/50 text-slate-950 p-4 rounded-2xl max-w-[88%] shadow-xs font-medium leading-relaxed">Hello! I am your updated <strong>Mzi AI Assistant</strong>send me any question i will answers immediately!</div></div>
                 </div>
                 <div class="p-3 bg-white border-t border-slate-200 flex space-x-3 items-center">
                     <input type="text" id="ai-input" onkeydown="if(event.key==='Enter') sendAIQuestion()" class="flex-1 border-2 border-slate-200 rounded-xl px-4 py-3.5 text-base font-medium outline-none focus:border-indigo-600 transition" placeholder="Ask any science question...">
@@ -204,8 +204,9 @@
             <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="space-y-1">
                     <span class="text-[10px] font-black text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full uppercase tracking-wider border border-indigo-100">Premium Solutions Guide</span>
-                    <h3 class="font-black text-base text-slate-900">A-Level Physics Solved Manual (2021-2026)</h3>
-                    <p class="text-xs text-slate-400 font-medium">Complete detailed answers compiled by seasoned national markers.</p>
+                    <h3 class="font-black text-base text-slate-900">A-Level Physics Solved Manual (2
+                        20)</h3>
+                    <p class="text-xs text-slate-400 font-medium">Complete detailed answers compiled by mzi's dteam.</p>
                 </div>
                 <div class="text-left sm:text-right shrink-0 w-full sm:w-auto">
                     <div class="text-2xl font-black text-indigo-600 mb-2" id="paper-price-display">FCFA 1,500</div>
@@ -376,7 +377,7 @@
                     body: JSON.stringify({
                         contents: [{ 
                             parts: [{ 
-                                text: `You are Mzi AI Tutor, an advanced academic AI assistant designed by Mindako Z. Iko for students preparing for Cameroon GCE Ordinary/Advanced Levels and university Concours (like ENSP, CUSS, HTTTC). Answer the following student question accurately, breaking down any step-by-step mathematical logic or science concepts beautifully: ${question}` 
+                                text: `You are Mzi AI Tutor, an advanced academic AI assistant designed by Mindako Z. Iko for students preparing for Cameroon GCE Advanced Levels and university Concours (like ENSP, CUSS, HTTTC). Answer the following student question accurately, breaking down any step-by-step mathematical logic or science concepts beautifully: ${question}` 
                             }] 
                         }]
                     })
