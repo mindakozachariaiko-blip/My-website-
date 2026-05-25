@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MZI Study Universe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#111827;
+}
+
+/* NAVBAR */
+
+nav{
+background:#0f172a;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+color:white;
+}
+
+.nav-links a{
+text-decoration:none;
+margin-left:25px;
+color:#e2e8f0;
+font-weight:500;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
+color:white;
+padding:90px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.hero h1{
+font-size:55px;
+line-height:1.2;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.hero button{
+background:white;
+color:#1e3a8a;
+border:none;
+padding:16px 35px;
+border-radius:50px;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:translateY(-3px);
+}
+
+/* SECTION */
+
+.section{
+padding:70px 8%;
+}
+
+.section-title{
+font-size:38px;
+margin-bottom:40px;
+text-align:center;
+color:#0f172a;
+}
+
+/* SUBJECT GRID */
+
+.subject-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+.subject-card{
+background:white;
+padding:35px 20px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+cursor:pointer;
+}
+
+.subject-card:hover{
+transform:translateY(-8px);
+}
+
+.subject-card h3{
+margin-top:15px;
+font-size:24px;
+}
+
+.subject-card p{
+margin-top:10px;
+color:#64748b;
+font-size:15px;
+}
+
+.subject-icon{
+font-size:45px;
+}
+
+/* QUIZ */
+
+.quiz-box{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+max-width:900px;
+margin:auto;
+display:none;
+}
+
+.timer{
+background:#fee2e2;
+padding:15px;
+font-size:22px;
+font-weight:700;
+border-radius:12px;
+text-align:center;
+margin-bottom:25px;
+color:#991b1b;
+}
+
+.question{
+font-size:28px;
+font-weight:600;
+margin-bottom:30px;
+}
+
+.option-btn{
+width:100%;
+padding:18px;
+margin-bottom:15px;
+border:none;
+background:#eff6ff;
+font-size:18px;
+text-align:left;
+border-radius:14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.option-btn:hover{
+background:#2563eb;
+color:white;
+}
+
+/* AI TUTOR */
+
+.ai-container{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+max-width:1000px;
+margin:auto;
+}
+
+.ai-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:25px;
+}
+
+.ai-header h2{
+font-size:34px;
+}
+
+.ai-chat{
+background:#f8fafc;
+padding:25px;
+border-radius:15px;
+min-height:200px;
+margin-bottom:20px;
+line-height:1.8;
+}
+
+.ai-input{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.ai-input textarea{
+flex:1;
+padding:18px;
+min-height:90px;
+border-radius:15px;
+border:1px solid #cbd5e1;
+font-size:16px;
+}
+
+.ai-input button{
+background:#2563eb;
+color:white;
+border:none;
+padding:18px 30px;
+border-radius:15px;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* LOGIN */
+
+.login-box{
+max-width:500px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.login-box input{
+width:100%;
+padding:16px;
+margin-bottom:18px;
+border-radius:12px;
+border:1px solid #cbd5e1;
+font-size:16px;
+}
+
+.login-box button{
+width:100%;
+padding:16px;
+background:#1e3a8a;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:600;
+}
+
+/* PAPERS */
+
+.paper-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.paper-card{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.paper-card button{
+margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#10b981;
+color:white;
+font-size:16px;
+font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:white;
+padding:50px 8%;
+margin-top:70px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+footer h3{
+margin-bottom:15px;
+}
+
+footer p{
+line-height:1.8;
+color:#cbd5e1;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+<div class="logo">🌍 MZI Study Universe</div>
+
+<div class="nav-links">
+<a href="#subjects">Subjects</a>
+<a href="#quiz">Quiz Arena</a>
+<a href="#ai">AI Tutor</a>
+<a href="#papers">Past Papers</a>
+<a href="#login">Student Login</a>
+</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+<h1>Cameroon's Professional Digital Learning Platform</h1>
+
+<p>
+Prepare for GCE examinations with professional CBT quizzes,
+AI tutoring, premium past papers, revision materials,
+and smart learning tools.
+</p>
+
+<button>Start Learning</button>
+</div>
+
+</section>
+
+<!-- SUBJECTS -->
+
+<section class="section" id="subjects">
+
+<h2 class="section-title">Explore Subjects</h2>
+
+<div class="subject-grid">
+
+<div class="subject-card">
+<div class="subject-icon">📐</div>
+<h3>Mathematics</h3>
+<p>500+ practice questions and explanations.</p>
+</div>
+
+<div class="subject-card">
+<div class="subject-icon">📊</div>
+<h3>Further Maths</h3>
+<p>Advanced calculus, statistics and mechanics.</p>
+</div>
+
+<div class="subject-card">
+<div class="subject-icon">⚡</div>
+<h3>Physics</h3>
+<p>Electricity, mechanics, waves and modern physics.</p>
+</div>
+
+<div class="subject-card">
+<div class="subject-icon">🧪</div>
+<h3>Chemistry</h3>
+<p>Organic, inorganic and physical chemistry.</p>
+</div>
+
+<div class="subject-card">
+<div class="subject-icon">🧬</div>
+<h3>Biology</h3>
+<p>Genetics, ecology, physiology and evolution.</p>
+</div>
+
+<div class="subject-card">
+<div class="subject-icon">📈</div>
+<h3>Statistics</h3>
+<p>Probability, distributions and data analysis.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ -->
+
+<section class="section" id="quiz">
+
+<h2 class="section-title">Professional CBT Quiz Arena</h2>
+
+<div class="quiz-box" id="quizBox" style="display:block;">
+
+<div class="timer" id="timer">⏳ 02:00</div>
+
+<h3 id="questionNumber">Question 1 of 10</h3>
+
+<div class="question" id="questionText">
+What is the derivative of x²?
+</div>
+
+<div id="optionsContainer"></div>
+
+</div>
+
+</section>
+
+<!-- AI -->
+
+<section class="section" id="ai">
+
+<h2 class="section-title">MZI Smart AI Tutor</h2>
+
+<div class="ai-container">
+
+<div class="ai-header">
+<h2>🤖 AI Academic Assistant</h2>
+</div>
+
+<div class="ai-chat" id="aiChat">
+Welcome to MZI AI Tutor. Ask any mathematics, physics,
+chemistry or biology question.
+</div>
+
+<div class="ai-input">
+<textarea id="aiQuestion" placeholder="Type your academic question here..."></textarea>
+
+<button onclick="askAI()">Ask AI</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- LOGIN -->
+
+<section class="section" id="login">
+
+<h2 class="section-title">Student Account Login</h2>
+
+<div class="login-box">
+
+<input type="text" placeholder="Student Name">
+
+<input type="email" placeholder="Email Address">
+
+<input type="password" placeholder="Password">
+
+<button>Create Account</button>
+
+</div>
+
+</section>
+
+<!-- PAST PAPERS -->
+
+<section class="section" id="papers">
+
+<h2 class="section-title">Premium Past Papers</h2>
+
+<div class="paper-grid">
+
+<div class="paper-card">
+<h3>Advanced Level Mathematics</h3>
+<p>2020 - 2025 solved past questions.</p>
+<button>Buy Papers</button>
+</div>
+
+<div class="paper-card">
+<h3>Physics Complete Pack</h3>
+<p>MCQ + structured solutions included.</p>
+<button>Buy Papers</button>
+</div>
+
+<div class="paper-card">
+<h3>Chemistry Revision Bundle</h3>
+<p>Professional explanations and marking guides.</p>
+<button>Buy Papers</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>MZI Study Universe</h3>
+<p>
+Professional educational platform helping students prepare for GCE examinations in Cameroon.
+</p>
+</div>
+
+<div>
+<h3>Contact Information</h3>
+<p>
+Founder: Mindako Zacharia Iko
+<br>
+Website: mzistudyuniverse.netlify.app
+<br>
+Location: Cameroon
+</p>
+</div>
+
+<div>
+<h3>Services</h3>
+<p>
+CBT Quizzes
+<br>
+AI Tutor
+<br>
+Past Papers
+<br>
+Student Accounts
+</p>
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+const quizQuestions = [
+{
+q:"What is the derivative of x²?",
+o:["2x","x²","1","0"],
+a:0
+},
+{
+q:"What is the SI unit of force?",
+o:["Newton","Joule","Watt","Pascal"],
+a:0
+},
+{
+q:"Which organelle produces ATP?",
+o:["Nucleus","Golgi","Mitochondria","Ribosome"],
+a:2
+},
+{
+q:"What is Avogadro's constant approximately?",
+o:["6.02 × 10²³","3 × 10⁸","9.8","1.6 × 10⁻¹⁹"],
+a:0
+},
+{
+q:"Mean of 2, 4, 6, 8 is?",
+o:["4","5","6","8"],
+a:1
+}
+];
+
+let currentQuestion = 0;
+let score = 0;
+let timer = 120;
+let interval;
+
+function loadQuestion(){
+
+clearInterval(interval);
+
+if(currentQuestion >= quizQuestions.length){
+showResult();
+return;
+}
+
+const q = quizQuestions[currentQuestion];
+
+document.getElementById("questionNumber").innerText =
+`Question ${currentQuestion+1} of ${quizQuestions.length}`;
+
+document.getElementById("questionText").innerText = q.q;
+
+let html = "";
+
+q.o.forEach((option,index)=>{
+html += `
+<button class="option-btn" onclick="checkAnswer(${index})">
+${option}
+</button>
+`;
+});
+
+document.getElementById("optionsContainer").innerHTML = html;
+
+timer = 120;
+updateTimer();
+
+interval = setInterval(()=>{
+
+timer--;
+updateTimer();
+
+if(timer <= 0){
+currentQuestion++;
+loadQuestion();
+}
+
+},1000);
+
+}
+
+function updateTimer(){
+
+let mins = String(Math.floor(timer/60)).padStart(2,'0');
+let secs = String(timer%60).padStart(2,'0');
+
+document.getElementById("timer").innerText = `⏳ ${mins}:${secs}`;
+
+}
+
+function checkAnswer(index){
+
+if(index === quizQuestions[currentQuestion].a){
+score++;
+}
+
+currentQuestion++;
+loadQuestion();
+
+}
+
+function showResult(){
+
+localStorage.setItem("mziScore",score);
+
+document.getElementById("quizBox").innerHTML = `
+<h2 style="font-size:40px;text-align:center;color:#1e3a8a;">
+Quiz Completed
+</h2>
+
+<p style="font-size:28px;text-align:center;margin-top:20px;">
+You scored ${score}/${quizQuestions.length}
+</p>
+`;
+
+}
+
+loadQuestion();
+
+function askAI(){
+
+const question = document.getElementById("aiQuestion").value.toLowerCase();
+
+let response = "";
+
+if(question.includes("derivative")){
+response = "The derivative measures the rate of change of a function. Example: derivative of x² is 2x.";
+}
+
+else if(question.includes("newton")){
+response = "Newton's laws describe motion and forces acting on objects.";
+}
+
+else if(question.includes("photosynthesis")){
+response = "Photosynthesis is the process where plants use sunlight to make glucose.";
+}
+
+else if(question.includes("atom")){
+response = "An atom is the smallest unit of an element retaining its chemical properties.";
+}
+
+else{
+response = "AI Tutor Response: Your question has been received. Advanced AI features can later be connected using OpenAI API or Gemini API.";
+}
+
+document.getElementById("aiChat").innerText = response;
+
+}
+
+</script>
+
+</body>
+</html>
