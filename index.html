@@ -223,9 +223,9 @@ section{
 }
 
 .ai-box textarea{
-    width:100%;
-    height:150px;
-    border:none;
+    width:80%;
+    height:98px;
+    border:blue;
     border-radius:15px;
     padding:20px;
     font-size:18px;
@@ -308,7 +308,14 @@ footer p{
     <div class="logo-circle">🌍</div>
     <h1>MZI's Study Universe</h1>
 </div><nav>
-    <a href="#alevel">A Level</a>
+    <div id="chat">
+  <h3>AI Tutor</h3>
+
+  <div id="messages"></div>
+
+  <input id="question" placeholder="Ask a question..." />
+  <button onclick="askAI()">Send</button>
+    </div> 
     <a href="#olevel">O Level</a>
     <a href="#ai">AI Tutor</a>
     <a href="#concours">Concours</a>
@@ -317,13 +324,13 @@ footer p{
     <a href="#menu">Menu</a>
 </nav></header><section class="hero">
     <h2>Welcome to MZI's Study Universe</h2>
-    <p>Modern Educational Platform For Students In Cameroon</p><button class="main-btn" onclick="showMessage()">
+    <p>Modern Educational Platform For Students to shape their future</p><button class="main-btn" onclick="showMessage()">
     Explore Papers
 </button>
 
 </section><section id="alevel"><h2 class="section-title">A Level Papers</h2><div class="grid"><div class="card">
 <h3>Mathematics</h3>
-<button class="paper-btn" onclick="noPaper()">Statistics Paper 1</button>
+<button class="paper-btn" onclick="stilladding()">Statistics Paper 1</button>
 <button class="paper-btn" onclick="noPaper()">Mechanics Paper 2</button>
 <button class="paper-btn" onclick="noPaper()">Pure Maths Paper 3</button>
 </div><div class="card">
@@ -371,7 +378,7 @@ footer p{
 <button class="paper-btn" onclick="noPaper()">Paper 1</button>
 <button class="paper-btn" onclick="noPaper()">Paper 2</button>
 </div><div class="card">
-<h3>ICT Food Science</h3>
+<h3> Food Science</h3>
 <button class="paper-btn" onclick="noPaper()">Paper 1</button>
 <button class="paper-btn" onclick="noPaper()">Paper 2</button>
 </div></div></section><section id="olevel"><h2 class="section-title">O Level Papers</h2><div class="grid"><div class="card">
@@ -435,10 +442,10 @@ footer p{
 </div><div class="card">
 <h3>Buy Concours Papers</h3>
 <button class="paper-btn" onclick="alert('Purchase System Coming Soon')">Buy Now</button>
-</div></div></section><section id="creator"><h2 class="section-title">Creator Biography</h2><div class="creator">
-<h3>Mindako Zacharia Iko</h3>
+</div></div></section><section id="creator"><h2 class="section-title">Creator</h2><div class="creator">
+<h3>Mindako Z Iko</h3>
 <p>
-Founder of MZI's Study Universe. Passionate about helping students in Cameroon succeed academically through technology, educational resources, AI learning and modern online education.
+Founder of MZI's Study Universe. Passionate about helping students to succeed academically through educational resources and modern online education.
 </p>
 </div></section><section id="menu"><h2 class="section-title">Menu & Settings</h2><div class="menu-box">
 <button onclick="alert('Dark Mode Feature Coming Soon')">Dark Mode</button>
@@ -451,7 +458,7 @@ Founder of MZI's Study Universe. Passionate about helping students in Cameroon s
 <p>MZI's Study Universe © 2026</p></footer><script>
 
 function noPaper(){
-    alert('No papers yet. Papers will be added soon.');
+    alert('come back later. Papers will be added soon.');
 }
 
 function showMessage(){
