@@ -10,26 +10,7 @@
     box-sizing:border-box;
     scroll-behavior:smooth;
 }
-<div class="mzi-ai-button" onclick="toggleAIChat()">
-  <span class="ai-icon">🤖</span>
-  <span class="ai-text">MZI's AI</span>
-</div>
-
-<div class="mzi-ai-chat" id="mziChatBox">
-  <div class="chat-header">
-    MZI's AI Tutor
-  </div>
-
-  <div class="chat-messages" id="chatMessages">
-    <p><b>AI:</b> Welcome to MZI's AI.</p>
-  </div>
-
-  <div class="chat-input-area">
-    <input type="text" id="userInput" placeholder="Ask a question...">
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div> 
-body{
+<body{
     font-family:Arial, sans-serif;
     background:#0f172a;
     color:Yellow;
@@ -255,101 +236,8 @@ section{
 .paper-btn:hover{
     background:#2563eb;
 }
-.mzi-ai-button{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #111, #333);
-  color: white;
-  padding: 14px 22px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  animation: floatButton 3s ease-in-out infinite;
-  transition: 0.3s;
-}
-
-.mzi-ai-button:hover{
-  transform: scale(1.05);
-}
-
-.ai-icon{
-  font-size: 24px;
-}
-
-.ai-text{
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.mzi-ai-chat{
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 320px;
-  height: 420px;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  display: none;
-  flex-direction: column;
-  z-index: 9999;
-  box-shadow: 0 0 25px rgba(0,0,0,0.3);
-}
-
-.chat-header{
-  background: #111;
-  color: white;
-  padding: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.chat-messages{
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-.chat-input-area{
-  display: flex;
-  border-top: 1px solid #ddd;
-}
-
-.chat-input-area input{
-  flex: 1;
-  border: none;
-  padding: 12px;
-  outline: none;
-}
-
-.chat-input-area button{
-  background: #111;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  cursor: pointer;
-}
-
-@keyframes floatButton{
-  0%{
-    transform: translateY(0px);
-  }
-
-  50%{
     transform: translateY(-8px);
-  }
-
-  100%{
-    transform: translateY(0px);
-  }
-    }
+  
 .subscription{
     text-align:center;
     background:rgba(255,255,255,0.08);
@@ -569,32 +457,5 @@ function showMessage(){
 }
 
     </script> </body>
-    <script>
-function toggleAIChat() {
-  let chatBox = document.getElementById("mziChatBox");
-
-  if(chatBox.style.display === "flex"){
-    chatBox.style.display = "none";
-  } else {
-    chatBox.style.display = "flex";
-  }
-}
-
-function sendMessage(){
-  let input = document.getElementById("userInput");
-  let messages = document.getElementById("chatMessages");
-
-  if(input.value.trim() === ""){
-    return;
-  }
-
-  messages.innerHTML += "<p><b>You:</b> " + input.value + "</p>";
-
-  messages.innerHTML += "<p><b>AI:</b> I am MZI's AI assistant.</p>";
-
-  input.value = "";
-
-  messages.scrollTop = messages.scrollHeight;
-}
-    </script> 
+    
 </html>
