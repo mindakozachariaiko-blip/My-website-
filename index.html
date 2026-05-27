@@ -685,11 +685,32 @@
     </div>
 
     <section class="hero">
+        
         <h2>Welcome to the Next-Gen <span>Academic Hub</span></h2>
         <p>Access high-quality revision documents, mock structures, past papers, and  competitive entrance exam tools tailored for excellence.</p>
     </section>
 
     <main class="main-container">
+                <div class="hub-title">
+            <i class="fa-solid fa-video"></i> Streaming Media & Video Lectures
+        </div>
+        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+            <button class="action-btn" style="flex:1; padding: 20px; background: linear-gradient(135deg, rgba(59,66,196,0.3), rgba(0,0,0,0.2)); border: 1px solid var(--accent-gold);" onclick="playVideoLesson('General')">
+                <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 1.5rem;"></i> 
+                <div>
+                    <strong style="display:block; color:var(--accent-gold);">GCE General Video Lessons</strong>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Syllabus Lectures for Arts & Sciences</span>
+                </div>
+            </button>
+            <button class="action-btn" style="flex:1; padding: 20px; background: linear-gradient(135deg, rgba(59,66,196,0.3), rgba(0,0,0,0.2)); border: 1px solid var(--accent-gold);" onclick="playVideoLesson('Technical')">
+                <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 1.5rem;"></i> 
+                <div>
+                    <strong style="display:block; color:var(--accent-gold);">GCE Technical Video Lessons</strong>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Electrical, Power Engineering & Fabrications</span>
+                </div>
+            </button>
+        </div>
+
 
         <div id="alevel-section" class="hub-title">
             <i class="fa-solid fa-award"></i> Advanced Level Hub (Click cards for Paper Navigation)
@@ -959,7 +980,7 @@
     <div class="ai-floating-widget">
         <div id="ai-chat" class="ai-chat-window">
             <div class="ai-header">
-                <span><i class="fa-solid fa-robot"></i> MZI AI Engine v2.0</span>
+                <span><i class="fa-solid fa-robot"></i> MZI AI Tutor v2.0</span>
                 <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="toggleChat()"></i>
             </div>
             <div class="ai-messages" id="chat-box">
@@ -998,6 +1019,12 @@
         let quizTimeLeft = 30;
         let currentQuizIndex = 0;
         let currentQuizSet = [];
+        // Video Lessons Routing Engine
+        function playVideoLesson(streamType) {
+            alert("MZI Streaming Media Hub:\nInitializing secure playback channel for [" + streamType + " Education Video Lessons].\n\nConnecting to MZI's Study Universe video hosting servers...");
+            // Tip: When you are ready, you can change this alert to open your YouTube channel link like this:
+            // window.open("YOUR_YOUTUBE_CHANNEL_LINK_HERE", "_blank");
+        }
 
         // Dynamic Database mock references for books and pamphlets
         const textbookDb = {
