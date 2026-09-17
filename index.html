@@ -1,1044 +1,1741 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AetherLearn — Illuminate Your Mind</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root {
-    --bg: #0b0f1a;
-    --bg-elevated: #111827;
-    --bg-card: rgba(255,255,255,0.03);
-    --border: rgba(255,255,255,0.08);
-    --text: #f1f5f9;
-    --text-muted: #94a3b8;
-    --accent: #38bdf8;
-    --accent-2: #818cf8;
-    --success: #34d399;
-    --warning: #fbbf24;
-    --danger: #f87171;
-    --radius: 14px;
-    --shadow: 0 10px 40px rgba(0,0,0,0.35);
-    --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
-}
+    <title>MZ Study Universe | Learn. Practice. Excel.</title>
 
-body.light {
-    --bg: #f8fafc;
-    --bg-elevated: #ffffff;
-    --bg-card: rgba(0,0,0,0.03);
-    --border: rgba(0,0,0,0.08);
-    --text: #0f172a;
-    --text-muted: #64748b;
-}
+    <meta name="description"
+          content="MZ Study Universe - Educational resources, GCE and CVE examination papers, Mathematics, Physics, Chemistry, Biology and Further Mathematics.">
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
-}
+        :root {
+            --primary: #173b7a;
+            --secondary: #2563eb;
+            --accent: #f5b400;
+            --light: #f4f7fb;
+            --dark: #111827;
+            --text: #374151;
+            --white: #ffffff;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --border: #e5e7eb;
+        }
 
-/* ===== BACKGROUND ===== */
-.bg-grid {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-image: 
-        linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.5;
-}
+        body {
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-/* ===== HEADER ===== */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(11,15,26,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
-}
+        /* ================= HEADER ================= */
 
-body.light header { background: rgba(255,255,255,0.9); }
+        header {
+            background: linear-gradient(135deg, #102d5e, #2563eb);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: inherit;
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-.logo i {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.6rem;
-}
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 6px;
-    align-items: center;
-}
-nav a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 8px 14px;
-    border-radius: 8px;
-    transition: var(--transition);
-}
-nav a:hover { color: var(--accent); background: rgba(56,189,248,0.08); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    border: none;
-    transition: var(--transition);
-    text-decoration: none;
-}
-.btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #0b0f1a;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56,189,248,0.3); }
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid var(--accent);
-    color: var(--accent);
-}
-.btn-outline:hover { background: var(--accent); color: #0b0f1a; }
-.btn-ghost {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text);
-}
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+        .logo-symbol {
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-.mobile-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.4rem;
-    cursor: pointer;
-}
+        .logo h1 {
+            font-size: 21px;
+        }
 
-/* ===== HERO ===== */
-.hero {
-    padding: 80px 5% 60px;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-}
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(56,189,248,0.1);
-    border: 1px solid rgba(56,189,248,0.25);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 24px;
-}
-.hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 18px;
-    letter-spacing: -0.5px;
-}
-.hero h1 span {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.hero p {
-    color: var(--text-muted);
-    font-size: 1.15rem;
-    max-width: 600px;
-    margin: 0 auto 32px;
-}
-.hero-actions {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+        .logo span {
+            font-size: 12px;
+            opacity: 0.85;
+        }
 
-/* ===== SECTIONS ===== */
-.section {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 60px 5%;
-}
-.section-header {
-    margin-bottom: 36px;
-}
-.section-header h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.section-header p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-}
+        nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
 
-/* ===== SUBJECTS ===== */
-.subjects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 18px;
-}
-.subject-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: var(--transition);
-    cursor: pointer;
-}
-.subject-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    background: rgba(56,189,248,0.05);
-}
-.subject-card .icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 16px;
-    background: rgba(56,189,248,0.12);
-    color: var(--accent);
-}
-.subject-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
-.subject-card p { color: var(--text-muted); font-size: 0.9rem; }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-/* ===== MATH LAB ===== */
-.math-lab {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: var(--shadow);
-}
-.lab-input-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-.lab-input-row input {
-    flex: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: var(--text);
-    font-size: 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    outline: none;
-    transition: var(--transition);
-}
-.lab-input-row input:focus { border-color: var(--accent); }
-.lab-result {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    min-height: 120px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
-    white-space: pre-wrap;
-    line-height: 1.7;
-}
-.lab-result .label { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 8px; }
-.lab-result .answer { color: var(--success); font-size: 1.15rem; font-weight: 600; }
-.lab-examples {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-}
-.lab-examples button {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: 'JetBrains Mono', monospace;
-}
-.lab-examples button:hover { border-color: var(--accent); color: var(--accent); }
+        nav a:hover {
+            color: var(--accent);
+        }
 
-/* ===== QUIZ ===== */
-.quiz-area {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 28px;
-}
-.quiz-question {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-.quiz-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.quiz-opt {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    text-align: left;
-    cursor: pointer;
-    transition: var(--transition);
-    color: var(--text);
-    font-size: 0.95rem;
-}
-.quiz-opt:hover { border-color: var(--accent); background: rgba(56,189,248,0.06); }
-.quiz-opt.correct { border-color: var(--success); background: rgba(52,211,153,0.1); }
-.quiz-opt.wrong { border-color: var(--danger); background: rgba(248,113,113,0.1); }
-.quiz-timer {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(251,191,36,0.15);
-    color: var(--warning);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
+        .menu-btn {
+            display: none;
+            font-size: 27px;
+            cursor: pointer;
+        }
 
-/* ===== RESOURCES ===== */
-.resources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 18px;
-}
-.resource-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px;
-    transition: var(--transition);
-}
-.resource-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-.resource-card h4 { margin-bottom: 8px; }
-.resource-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 14px; }
+        /* ================= HERO ================= */
 
-/* ===== AI FLOATING ===== */
-.ai-widget {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.ai-window {
-    width: 370px;
-    height: 480px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 14px;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    animation: slideUp 0.3s ease;
-}
-.ai-header {
-    background: linear-gradient(135deg, #0ea5e9, #6366f1);
-    padding: 14px 16px;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-}
-.ai-messages {
-    flex: 1;
-    padding: 16px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.msg {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-.msg.bot {
-    background: var(--bg-card);
-    align-self: flex-start;
-    border: 1px solid var(--border);
-}
-.msg.user {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #0b0f1a;
-    align-self: flex-end;
-}
-.ai-input {
-    display: flex;
-    gap: 8px;
-    padding: 12px;
-    border-top: 1px solid var(--border);
-}
-.ai-input input {
-    flex: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 12px;
-    color: var(--text);
-    outline: none;
-}
-.ai-input button {
-    background: var(--accent);
-    border: none;
-    border-radius: 8px;
-    padding: 0 16px;
-    color: #0b0f1a;
-    font-weight: 600;
-    cursor: pointer;
-}
-.ai-launcher {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0ea5e9, #6366f1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 8px 30px rgba(14,165,233,0.4);
-    transition: var(--transition);
-    border: none;
-}
-.ai-launcher:hover { transform: scale(1.08); }
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(rgba(10,31,67,0.85), rgba(20,64,130,0.85)),
+                radial-gradient(circle at top right, #2563eb, #102d5e);
+            color: white;
+        }
 
-/* ===== TOAST ===== */
-.toast-container {
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    z-index: 3000;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.toast {
-    background: var(--bg-elevated);
-    border: 1px solid var(--accent);
-    padding: 14px 18px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 280px;
-    animation: slideIn 0.35s ease;
-    font-size: 0.9rem;
-}
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 70px 20px;
+        }
 
-/* ===== FOOTER ===== */
-footer {
-    background: var(--bg-elevated);
-    border-top: 1px solid var(--border);
-    padding: 50px 5%;
-    text-align: center;
-    margin-top: 40px;
-}
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-.footer-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-.footer-links a:hover { color: var(--accent); }
+        .hero h2 {
+            font-size: clamp(35px, 6vw, 65px);
+            max-width: 750px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
-/* ===== MODAL ===== */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 2500;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-.modal-box {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    max-width: 480px;
-    width: 100%;
-    animation: slideUp 0.3s ease;
-}
+        .hero h2 span {
+            color: var(--accent);
+        }
 
-@keyframes slideUp {
-    from { opacity:0; transform:translateY(20px); }
-    to { opacity:1; transform:translateY(0); }
-}
-@keyframes slideIn {
-    from { opacity:0; transform:translateX(30px); }
-    to { opacity:1; transform:translateX(0); }
-}
+        .hero p {
+            max-width: 650px;
+            font-size: 18px;
+            opacity: 0.92;
+            margin-bottom: 30px;
+        }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    nav ul { display: none; position:absolute; top:70px; left:0; right:0; background:var(--bg-elevated); flex-direction:column; padding:16px; border-bottom:1px solid var(--border); }
-    nav ul.open { display:flex; }
-    .mobile-btn { display:block; }
-    .lab-input-row { flex-direction:column; }
-    .ai-window { width: 320px; height: 440px; }
-}
-</style>
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #111827;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ================= GENERAL ================= */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: 0.25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        /* ================= SUBJECTS ================= */
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .subject {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .subject:hover {
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .subject-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .subject h3 {
+            color: var(--primary);
+        }
+
+        /* ================= PAPERS ================= */
+
+        .papers-section {
+            background: white;
+        }
+
+        .paper-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .paper {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .paper-tag {
+            display: inline-block;
+            background: #eaf1ff;
+            color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .paper h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .paper-info {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: var(--success);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* ================= NOTIFICATIONS ================= */
+
+        .notification-area {
+            background: #fff8df;
+            border-top: 1px solid #f1d878;
+            border-bottom: 1px solid #f1d878;
+        }
+
+        .notification {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification strong {
+            color: #8a6500;
+        }
+
+        /* ================= PAYMENT ================= */
+
+        .payment-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--secondary);
+            background: #f4f8ff;
+        }
+
+        .payment-method h3 {
+            margin-bottom: 5px;
+        }
+
+        .mtn {
+            color: #e0a500;
+        }
+
+        .orange {
+            color: #f97316;
+        }
+
+        .payment-number {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50p;
+            align-items: center;
+        }
+
+        .about h2 {
+            color: var(--primary);
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            margin-bottom: 15px;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .about-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 25px;
+        }
+
+        /* ================= SETTINGS ================= */
+
+        .settings-box {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .setting:last-child {
+            border-bottom: none;
+        }
+
+        .toggle {
+            width: 48px;
+            height: 25px;
+            background: #d1d5db;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle::after {
+            content: "";
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.2s;
+        }
+
+        .toggle.active {
+            background: var(--secondary);
+        }
+
+        .toggle.active::after {
+            left: 25px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0b1730;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        footer a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #263653;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 550px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        /* ================= DARK MODE ================= */
+
+        body.dark {
+            --light: #111827;
+            --dark: #f9fafb;
+            --text: #d1d5db;
+            --white: #1f2937;
+            --border: #374151;
+            background: #111827;
+            color: #d1d5db;
+        }
+
+        body.dark .feature,
+        body.dark .subject,
+        body.dark .paper,
+        body.dark .payment-box,
+        body.dark .contact-card,
+        body.dark .settings-box,
+        body.dark .modal-content {
+            background: #1f2937;
+            color: #d1d5db;
+        }
+
+        body.dark .section-title h2,
+        body.dark .feature h3,
+        body.dark .subject h3,
+        body.dark .paper h3,
+        body.dark .about h2 {
+            color: white;
+        }
+
+        body.dark .papers-section {
+            background: #111827;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .subjects {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .paper-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #102d5e;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .features,
+            .subjects,
+            .paper-grid,
+            .about,
+            .contact-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subjects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero-content {
+                padding-top: 50px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="bg-grid"></div>
-<div class="toast-container" id="toasts"></div>
+<!-- ================= HEADER ================= -->
 
-<!-- HEADER -->
 <header>
-    <a href="#" class="logo">
-        <i class="fa-solid fa-atom"></i>
-        AetherLearn
-    </a>
-    <nav>
-        <ul id="navMenu">
-            <li><a href="#subjects">Subjects</a></li>
-            <li><a href="#mathlab">Math Lab</a></li>
-            <li><a href="#practice">Practice</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#about">About</a></li>
-            <li><button class="btn btn-ghost" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button></li>
-            <li><a href="#mathlab" class="btn btn-primary">Open Math Lab</a></li>
-        </ul>
-    </nav>
-    <button class="mobile-btn" onclick="toggleNav()"><i class="fa-solid fa-bars" id="navIcon"></i></button>
+    <div class="navbar">
+
+        <div class="logo">
+            <div class="logo-symbol">MZ</div>
+
+            <div>
+                <h1>MZ Study Universe</h1>
+                <span>Learn • Practice • Excel</span>
+            </div>
+        </div>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+        <nav id="navigation">
+            <a href="#home">Home</a>
+            <a href="#subjects">Subjects</a>
+            <a href="#papers">Papers</a>
+            <a href="#notifications">Notifications</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#settings">Settings</a>
+        </nav>
+
+    </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Free • Interactive • Math-First</div>
-    <h1>Learn smarter with<br><span>clarity and precision</span></h1>
-    <p>AetherLearn is a modern educational platform focused on deep understanding — especially in Mathematics. Practice, explore, and get instant help from a real math-capable AI tutor.</p>
-    <div class="hero-actions">
-        <a href="#mathlab" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Try Math Lab</a>
-        <a href="#practice" class="btn btn-outline"><i class="fa-solid fa-brain"></i> Start Practice</a>
-        <button class="btn btn-ghost" onclick="openAI()"><i class="fa-solid fa-robot"></i> Ask AI Tutor</button>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h2>
+            Your Gateway to
+            <span>Academic Excellence</span>
+        </h2>
+
+        <p>
+            Welcome to MZ Study Universe — a digital learning platform
+            designed to help students prepare, practise and succeed in
+            GCE, CVE and technical education examinations.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#subjects" class="btn btn-primary">
+                Explore Subjects
+            </a>
+
+            <a href="#papers" class="btn btn-outline">
+                Buy Examination Papers
+            </a>
+        </div>
+
     </div>
+
 </section>
 
-<!-- SUBJECTS -->
-<section class="section" id="subjects">
-    <div class="section-header">
-        <h2>Core Subjects</h2>
-        <p>Structured pathways designed for clarity and mastery</p>
+
+<!-- ================= NOTIFICATION ================= -->
+
+<section class="notification-area" id="notifications">
+
+    <div class="notification">
+
+        <span style="font-size:25px;">🔔</span>
+
+        <div>
+            <strong>Important Notification:</strong>
+            Stay consistent with your studies and make good use of
+            your time. New learning materials and examination papers
+            will be added regularly.
+        </div>
+
     </div>
-    <div class="subjects-grid">
-        <div class="subject-card" onclick="scrollToLab()">
-            <div class="icon"><i class="fa-solid fa-square-root-variable"></i></div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="container">
+
+    <div class="section-title">
+        <h2>Platform Features</h2>
+        <p>Everything students need in one educational platform.</p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">📚</div>
+            <h3>Study Materials</h3>
+            <p>Access educational resources for different subjects.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📝</div>
+            <h3>Past Papers</h3>
+            <p>Practise with examination papers and revision materials.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🎓</div>
+            <h3>GCE Preparation</h3>
+            <p>Prepare effectively for Ordinary and Advanced Level exams.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⚙️</div>
+            <h3>Technical Education</h3>
+            <p>Resources for CVE and technical education students.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUBJECTS ================= -->
+
+<section class="container" id="subjects">
+
+    <div class="section-title">
+
+        <h2>Our Subjects</h2>
+
+        <p>
+            Choose a subject and start learning.
+        </p>
+
+    </div>
+
+    <div class="subjects">
+
+        <div class="subject" onclick="showSubject('Mathematics')">
+            <div class="subject-icon">📐</div>
             <h3>Mathematics</h3>
-            <p>Algebra, Calculus, Geometry, Trigonometry & more</p>
+            <p>GCE & CVE</p>
         </div>
-        <div class="subject-card">
-            <div class="icon"><i class="fa-solid fa-atom"></i></div>
+
+        <div class="subject" onclick="showSubject('Physics')">
+            <div class="subject-icon">⚛️</div>
             <h3>Physics</h3>
-            <p>Mechanics, Waves, Electricity, Thermodynamics</p>
+            <p>GCE & CVE</p>
         </div>
-        <div class="subject-card">
-            <div class="icon"><i class="fa-solid fa-flask"></i></div>
+
+        <div class="subject" onclick="showSubject('Chemistry')">
+            <div class="subject-icon">🧪</div>
             <h3>Chemistry</h3>
-            <p>Organic, Inorganic, Physical Chemistry foundations</p>
+            <p>GCE & CVE</p>
         </div>
-        <div class="subject-card">
-            <div class="icon"><i class="fa-solid fa-code"></i></div>
-            <h3>Computer Science</h3>
-            <p>Algorithms, Logic, Programming concepts</p>
+
+        <div class="subject" onclick="showSubject('Biology')">
+            <div class="subject-icon">🧬</div>
+            <h3>Biology</h3>
+            <p>GCE & CVE</p>
         </div>
-        <div class="subject-card">
-            <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-            <h3>Statistics</h3>
-            <p>Probability, Data analysis, Distributions</p>
+
+        <div class="subject" onclick="showSubject('Further Mathematics')">
+            <div class="subject-icon">∫</div>
+            <h3>Further Mathematics</h3>
+            <p>GCE</p>
         </div>
-        <div class="subject-card">
-            <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
-            <h3>Problem Solving</h3>
-            <p>Critical thinking & mathematical reasoning</p>
-        </div>
+
     </div>
+
 </section>
 
-<!-- MATH LAB -->
-<section class="section" id="mathlab">
-    <div class="section-header">
-        <h2>Live Math Lab</h2>
-        <p>Type any mathematical expression or equation. The system will evaluate or solve it.</p>
+
+<!-- ================= PAPERS ================= -->
+
+<section class="papers-section" id="papers">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Examination Papers</h2>
+
+            <p>
+                Purchase papers and use them for serious examination practice.
+            </p>
+
+        </div>
+
+        <div class="paper-grid">
+
+            <div class="paper">
+
+                <span class="paper-tag">GCE O/L</span>
+
+                <h3>Ordinary Level Physics</h3>
+
+                <p class="paper-info">
+                    Physics examination paper for Ordinary Level students.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('Ordinary Level Physics Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+
+            <div class="paper">
+
+                <span class="paper-tag">GCE A/L</span>
+
+                <h3>Advanced Level Physics</h3>
+
+                <p class="paper-info">
+                    Advanced Level Physics revision and examination paper.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('Advanced Level Physics Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+
+            <div class="paper">
+
+                <span class="paper-tag">GCE O/L</span>
+
+                <h3>Mathematics Paper</h3>
+
+                <p class="paper-info">
+                    Mathematics practice paper for GCE students.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('Mathematics Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+
+            <div class="paper">
+
+                <span class="paper-tag">GCE A/L</span>
+
+                <h3>Further Mathematics</h3>
+
+                <p class="paper-info">
+                    Advanced Mathematics practice materials.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('Further Mathematics Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+
+            <div class="paper">
+
+                <span class="paper-tag">GCE</span>
+
+                <h3>Chemistry Paper</h3>
+
+                <p class="paper-info">
+                    Chemistry revision and examination practice.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('Chemistry Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+
+            <div class="paper">
+
+                <span class="paper-tag">CVE</span>
+
+                <h3>Technical Education Paper</h3>
+
+                <p class="paper-info">
+                    Examination resources for technical education students.
+                </p>
+
+                <div class="price">
+                    500 FCFA
+                </div>
+
+                <button class="btn btn-primary"
+                        onclick="openPurchase('CVE Technical Education Paper', 500)">
+                    Purchase Paper
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="math-lab">
-        <div class="lab-input-row">
-            <input type="text" id="labInput" placeholder="e.g. 2x + 5 = 17   or   integrate(x^2, x)   or   3*sin(pi/2)" onkeypress="if(event.key==='Enter')runMathLab()">
-            <button class="btn btn-primary" onclick="runMathLab()"><i class="fa-solid fa-play"></i> Solve</button>
-        </div>
-        <div class="lab-result" id="labResult">
-            <div class="label">Result will appear here</div>
-            <div>Try typing an equation or expression above.</div>
-        </div>
-        <div class="lab-examples">
-            <button onclick="setLab('2x + 5 = 17')">2x + 5 = 17</button>
-            <button onclick="setLab('x^2 - 5x + 6 = 0')">x² - 5x + 6 = 0</button>
-            <button onclick="setLab('3 * sin(pi/2)')">3 * sin(π/2)</button>
-            <button onclick="setLab('derivative(x^3 + 2x, x)')">derivative(x³ + 2x)</button>
-            <button onclick="setLab('integrate(2x, x)')">integrate(2x)</button>
-            <button onclick="setLab('sqrt(144) + 8')">√144 + 8</button>
-        </div>
-    </div>
+
 </section>
 
-<!-- PRACTICE QUIZ -->
-<section class="section" id="practice">
-    <div class="section-header">
-        <h2>Quick Practice</h2>
-        <p>Short timed questions to sharpen your skills</p>
-    </div>
-    <div class="quiz-area">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <div class="quiz-timer" id="quizTimer"><i class="fa-solid fa-clock"></i> 30s</div>
-            <button class="btn btn-ghost" onclick="startQuiz()">New Question</button>
-        </div>
-        <div class="quiz-question" id="quizQ">Click “New Question” to begin</div>
-        <div class="quiz-options" id="quizOpts"></div>
-        <div id="quizFeedback" style="margin-top:16px; font-weight:600;"></div>
-    </div>
-</section>
 
-<!-- RESOURCES -->
-<section class="section" id="resources">
-    <div class="section-header">
-        <h2>Study Resources</h2>
-        <p>Curated materials to deepen understanding</p>
-    </div>
-    <div class="resources-grid">
-        <div class="resource-card">
-            <h4><i class="fa-solid fa-book-open" style="color:var(--accent); margin-right:8px;"></i> Algebra Foundations</h4>
-            <p>Linear equations, quadratic formulas, inequalities and systems.</p>
-            <button class="btn btn-ghost" style="padding:7px 14px; font-size:0.85rem;" onclick="showToast('Resource coming soon')">Explore</button>
-        </div>
-        <div class="resource-card">
-            <h4><i class="fa-solid fa-infinity" style="color:var(--accent); margin-right:8px;"></i> Calculus Essentials</h4>
-            <p>Limits, derivatives, integrals and the fundamental theorem.</p>
-            <button class="btn btn-ghost" style="padding:7px 14px; font-size:0.85rem;" onclick="showToast('Resource coming soon')">Explore</button>
-        </div>
-        <div class="resource-card">
-            <h4><i class="fa-solid fa-shapes" style="color:var(--accent); margin-right:8px;"></i> Geometry & Trigonometry</h4>
-            <p>Triangles, circles, identities and real-world applications.</p>
-            <button class="btn btn-ghost" style="padding:7px 14px; font-size:0.85rem;" onclick="showToast('Resource coming soon')">Explore</button>
-        </div>
-        <div class="resource-card">
-            <h4><i class="fa-solid fa-chart-pie" style="color:var(--accent); margin-right:8px;"></i> Probability & Statistics</h4>
-            <p>Distributions, expected value, hypothesis testing basics.</p>
-            <button class="btn btn-ghost" style="padding:7px 14px; font-size:0.85rem;" onclick="showToast('Resource coming soon')">Explore</button>
-        </div>
-    </div>
-</section>
+<!-- ================= PAYMENT ================= -->
 
-<!-- ABOUT -->
-<section class="section" id="about">
-    <div class="section-header">
-        <h2>About AetherLearn</h2>
-        <p>Built for students who want clarity, not just answers</p>
-    </div>
-    <div style="background:var(--bg-elevated); border:1px solid var(--border); border-radius:18px; padding:32px; max-width:800px;">
-        <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7; margin-bottom:20px;">
-            AetherLearn is an independent educational platform designed to help learners build genuine mathematical intuition. 
-            We believe the best learning happens when you can experiment, make mistakes, and receive clear explanations instantly.
+<section class="container" id="payment">
+
+    <div class="section-title">
+
+        <h2>Purchase Examination Papers</h2>
+
+        <p>
+            Select your preferred payment method.
         </p>
-        <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.7;">
-            The Math Lab and AI Tutor are powered by real mathematical computation so you can verify results and understand the steps behind them.
-        </p>
+
     </div>
+
+    <div class="payment-box">
+
+        <div class="form-group">
+
+            <label for="paperSelect">
+                Select Paper
+            </label>
+
+            <select id="paperSelect">
+                <option value="Ordinary Level Physics Paper|500">
+                    Ordinary Level Physics — 500 FCFA
+                </option>
+
+                <option value="Advanced Level Physics Paper|500">
+                    Advanced Level Physics — 500 FCFA
+                </option>
+
+                <option value="Mathematics Paper|500">
+                    Mathematics — 500 FCFA
+                </option>
+
+                <option value="Further Mathematics Paper|500">
+                    Further Mathematics — 500 FCFA
+                </option>
+
+                <option value="Chemistry Paper|500">
+                    Chemistry — 500 FCFA
+                </option>
+
+                <option value="CVE Technical Education Paper|500">
+                    CVE Technical Education — 500 FCFA
+                </option>
+            </select>
+
+        </div>
+
+
+        <h3>Select Payment Method</h3>
+
+        <div class="payment-methods">
+
+            <div class="payment-method"
+                 onclick="selectPayment('MTN')">
+
+                <h3 class="mtn">
+                    🟡 MTN Mobile Money
+                </h3>
+
+                <p>Pay with MTN MoMo</p>
+
+            </div>
+
+
+            <div class="payment-method"
+                 onclick="selectPayment('Orange')">
+
+                <h3 class="orange">
+                    🟠 Orange Money
+                </h3>
+
+                <p>Pay with Orange Money</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="payment-number">
+
+            Payment / Contact Number:<br>
+
+            <span>
+                678 440 135
+            </span>
+
+        </div>
+
+
+        <div style="margin-top:20px;">
+
+            <p>
+                After making payment, contact MZ Study Universe with
+                your payment confirmation and the name of the paper
+                you purchased.
+            </p>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- FOOTER -->
+
+<!-- ================= ABOUT ================= -->
+
+<section class="container" id="about">
+
+    <div class="about">
+
+        <div>
+
+            <h2>About MZ Study Universe</h2>
+
+            <p>
+                MZ Study Universe is an educational platform created
+                to provide students with useful learning materials,
+                examination resources and academic support.
+            </p>
+
+            <p>
+                The platform focuses on Mathematics, Physics, Chemistry,
+                Biology, Further Mathematics and technical education.
+            </p>
+
+            <p>
+                Our goal is to encourage students to study consistently,
+                practise regularly and prepare effectively for their
+                examinations.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>Founder</h3>
+
+            <h2>
+                Mindako Z. Iko
+            </h2>
+
+            <p>
+                Founder & Educational Content Creator
+            </p>
+
+            <br>
+
+            <p>
+                MZ Study Universe is committed to supporting students
+                through quality educational content and examination
+                preparation resources.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="container" id="contact">
+
+    <div class="section-title">
+
+        <h2>Contact Us</h2>
+
+        <p>
+            Have a question or need educational support?
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-card">
+
+            <div class="contact-item">
+
+                <div class="contact-icon">👤</div>
+
+                <div>
+                    <strong>Founder</strong>
+                    <p>Mindako Z. Iko</p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">📱</div>
+
+                <div>
+                    <strong>Phone / WhatsApp</strong>
+                    <p>678 440 135</p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">💳</div>
+
+                <div>
+                    <strong>Payment</strong>
+                    <p>MTN Mobile Money / Orange Money</p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">📧</div>
+
+                <div>
+                    <strong>Email</strong>
+                    <p>Mindako Zakariya Iko, Gmail.com</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h3 style="color:#173b7a; margin-bottom:20px;">
+                Send a Message
+            </h3>
+
+            <form onsubmit="sendMessage(event)">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text"
+                           id="visitorName"
+                           placeholder="Enter your name"
+                           required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email"
+                           id="visitorEmail"
+                           placeholder="Enter your email"
+                           required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Message</label>
+
+                    <textarea id="visitorMessage"
+                              rows="5"
+                              placeholder="Write your message..."
+                              required></textarea>
+                </div>
+
+
+                <button class="btn btn-primary"
+                        type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section class="container" id="settings">
+
+    <div class="section-title">
+
+        <h2>Settings</h2>
+
+        <p>
+            Customize your MZ Study Universe experience.
+        </p>
+
+    </div>
+
+
+    <div class="settings-box">
+
+        <div class="setting">
+
+            <div>
+                <strong>Dark Mode</strong>
+
+                <p>
+                    Change the appearance of the website.
+                </p>
+            </div>
+
+            <div class="toggle"
+                 id="darkToggle"
+                 onclick="toggleDarkMode()">
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div>
+                <strong>Notifications</strong>
+
+                <p>
+                    Receive important study notifications.
+                </p>
+            </div>
+
+            <div class="toggle active"
+                 id="notificationToggle"
+                 onclick="toggleNotifications()">
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div>
+                <strong>Student Information</strong>
+
+                <p>
+                    Educational resources are available for
+                    GCE and CVE students.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-    <div style="font-weight:700; font-size:1.2rem; margin-bottom:8px;">AetherLearn</div>
-    <p style="color:var(--text-muted);">Illuminate Your Mind</p>
-    <div class="footer-links">
-        <a href="#subjects">Subjects</a>
-        <a href="#mathlab">Math Lab</a>
-        <a href="#practice">Practice</a>
-        <a href="#resources">Resources</a>
-        <a href="#about">About</a>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h3>MZ Study Universe</h3>
+
+            <p>
+                Learn. Practise. Excel.
+            </p>
+
+            <p style="margin-top:10px; color:#9ca3af;">
+                Educational resources for students preparing
+                for GCE and CVE examinations.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <a href="#home">Home</a>
+            <a href="#subjects">Subjects</a>
+            <a href="#papers">Papers</a>
+            <a href="#about">About Us</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Subjects</h3>
+
+            <a href="#subjects">Mathematics</a>
+            <a href="#subjects">Physics</a>
+            <a href="#subjects">Chemistry</a>
+            <a href="#subjects">Biology</a>
+            <a href="#subjects">Further Mathematics</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Contact</h3>
+
+            <a href="#contact">
+                Mindako Z. Iko
+            </a>
+
+            <a href="tel:+237678440135">
+                678 440 135
+            </a>
+
+            <a href="#payment">
+                MTN / Orange Money
+            </a>
+
+        </div>
+
     </div>
-    <p style="color:var(--text-muted); font-size:0.85rem; margin-top:24px;">© 2026 AetherLearn. Built for deep learning.</p>
+
+
+    <div class="copyright">
+
+        © <span id="year"></span> MZ Study Universe.
+        All Rights Reserved.
+
+    </div>
+
 </footer>
 
-<!-- AI WIDGET -->
-<div class="ai-widget">
-    <div class="ai-window" id="aiWindow">
-        <div class="ai-header">
-            <span><i class="fa-solid fa-robot"></i> Aether Math Tutor</span>
-            <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="toggleAI()"></i>
+
+<!-- ================= PURCHASE MODAL ================= -->
+
+<div class="modal" id="purchaseModal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="closePurchase()">
+            &times;
+        </span>
+
+        <h2 style="color:#173b7a; margin-bottom:15px;">
+            Purchase Paper
+        </h2>
+
+        <p id="selectedPaper">
+            Selected Paper
+        </p>
+
+        <p style="font-size:22px;
+                  color:#16a34a;
+                  font-weight:bold;
+                  margin:10px 0;">
+            <span id="selectedPrice">500</span> FCFA
+        </p>
+
+
+        <div class="form-group">
+
+            <label>Your Name</label>
+
+            <input type="text"
+                   id="buyerName"
+                   placeholder="Enter your name">
+
         </div>
-        <div class="ai-messages" id="aiMessages">
-            <div class="msg bot">Hello! I’m your Math Tutor. Ask me to solve equations, evaluate expressions, or explain concepts.<br><br>Examples:<br>• solve 3x - 7 = 14<br>• what is the quadratic formula?<br>• derivative of x²</div>
+
+
+        <div class="form-group">
+
+            <label>Payment Method</label>
+
+            <select id="buyerPayment">
+
+                <option value="MTN">
+                    MTN Mobile Money
+                </option>
+
+                <option value="Orange">
+                    Orange Money
+                </option>
+
+            </select>
+
         </div>
-        <div class="ai-input">
-            <input type="text" id="aiInput" placeholder="Ask a math question..." onkeypress="if(event.key==='Enter')sendAI()">
-            <button onclick="sendAI()">Send</button>
+
+
+        <div class="payment-number">
+
+            Send payment to:<br>
+
+            <strong>
+                678 440 135
+            </strong>
+
         </div>
+
+
+        <p style="margin:20px 0; font-size:14px;">
+
+            After payment, keep your transaction confirmation
+            and contact MZ Study Universe to receive your paper.
+
+        </p>
+
+
+        <button class="btn btn-primary"
+                style="width:100%;"
+                onclick="confirmPurchase()">
+
+            Confirm Purchase
+
+        </button>
+
     </div>
-    <button class="ai-launcher" onclick="toggleAI()" title="Math AI Tutor">
-        <i class="fa-solid fa-robot"></i>
-    </button>
+
 </div>
 
+
 <script>
-// ========== THEME ==========
-function toggleTheme() {
-    document.body.classList.toggle('light');
-    showToast(document.body.classList.contains('light') ? 'Light mode' : 'Dark mode');
-}
 
-// ========== NAV ==========
-function toggleNav() {
-    document.getElementById('navMenu').classList.toggle('open');
-    const icon = document.getElementById('navIcon');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-xmark');
-}
-document.querySelectorAll('#navMenu a').forEach(a => {
-    a.addEventListener('click', () => {
-        document.getElementById('navMenu').classList.remove('open');
-        document.getElementById('navIcon').className = 'fa-solid fa-bars';
-    });
-});
+    /* ================= MOBILE MENU ================= */
 
-// ========== TOAST ==========
-function showToast(msg) {
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.innerHTML = `<i class="fa-solid fa-circle-info" style="color:var(--accent)"></i> ${msg}`;
-    document.getElementById('toasts').appendChild(t);
-    setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),300); }, 3200);
-}
+    function toggleMenu() {
 
-// ========== MATH LAB ==========
-function setLab(val) {
-    document.getElementById('labInput').value = val;
-    runMathLab();
-}
+        document
+            .getElementById("navigation")
+            .classList.toggle("show");
 
-function runMathLab() {
-    const input = document.getElementById('labInput').value.trim();
-    const resultBox = document.getElementById('labResult');
-    if (!input) {
-        resultBox.innerHTML = '<div class="label">Empty input</div><div>Please type an expression or equation.</div>';
-        return;
     }
 
-    try {
-        // Handle simple linear / quadratic equations
-        if (input.includes('=')) {
-            const solution = solveEquation(input);
-            resultBox.innerHTML = `
-                <div class="label">Equation</div>
-                <div>${input}</div>
-                <div class="label" style="margin-top:14px;">Solution</div>
-                <div class="answer">${solution}</div>`;
+
+    /* ================= YEAR ================= */
+
+    document
+        .getElementById("year")
+        .textContent = new Date().getFullYear();
+
+
+    /* ================= SUBJECT ================= */
+
+    function showSubject(subject) {
+
+        alert(
+            subject +
+            " resources will be available here."
+        );
+
+    }
+
+
+    /* ================= PURCHASE ================= */
+
+    function openPurchase(paper, price) {
+
+        document
+            .getElementById("selectedPaper")
+            .textContent = paper;
+
+        document
+            .getElementById("selectedPrice")
+            .textContent = price;
+
+        document
+            .getElementById("purchaseModal")
+            .style.display = "flex";
+
+    }
+
+
+    function closePurchase() {
+
+        document
+            .getElementById("purchaseModal")
+            .style.display = "none";
+
+    }
+
+
+    function confirmPurchase() {
+
+        const name =
+            document
+            .getElementById("buyerName")
+            .value;
+
+        const payment =
+            document
+            .getElementById("buyerPayment")
+            .value;
+
+        const paper =
+            document
+            .getElementById("selectedPaper")
+            .textContent;
+
+        if (!name) {
+
+            alert(
+                "Please enter your name before confirming."
+            );
+
             return;
+
         }
 
-        // Handle derivative / integrate keywords
-        let expr = input;
-        if (input.toLowerCase().startsWith('derivative(')) {
-            const inside = input.slice(11, -1);
-            const parts = inside.split(',').map(s => s.trim());
-            const res = math.derivative(parts[0], parts[1] || 'x').toString();
-            resultBox.innerHTML = `
-                <div class="label">Derivative</div>
-                <div>${input}</div>
-                <div class="label" style="margin-top:14px;">Result</div>
-                <div class="answer">${res}</div>`;
-            return;
+        alert(
+            "Purchase request recorded.\n\n" +
+            "Student: " + name + "\n" +
+            "Paper: " + paper + "\n" +
+            "Payment: " + payment + "\n\n" +
+            "Please complete payment and contact MZ Study Universe."
+        );
+
+        closePurchase();
+
+    }
+
+
+    /* ================= PAYMENT METHOD ================= */
+
+    function selectPayment(method) {
+
+        alert(
+            method +
+            " Mobile Money selected.\n\n" +
+            "Payment Number: 678 440 135"
+        );
+
+    }
+
+
+    /* ================= CONTACT FORM ================= */
+
+    function sendMessage(event) {
+
+        event.preventDefault();
+
+        const name =
+            document
+            .getElementById("visitorName")
+            .value;
+
+        alert(
+            "Thank you, " +
+            name +
+            ". Your message has been prepared."
+        );
+
+    }
+
+
+    /* ================= DARK MODE ================= */
+
+    function toggleDarkMode() {
+
+        document
+            .body
+            .classList
+            .toggle("dark");
+
+        document
+            .getElementById("darkToggle")
+            .classList
+            .toggle("active");
+
+    }
+
+
+    /* ================= NOTIFICATION ================= */
+
+    function toggleNotifications() {
+
+        document
+            .getElementById("notificationToggle")
+            .classList
+            .toggle("active");
+
+    }
+
+
+    /* ================= CLOSE MODAL ================= */
+
+    window.onclick = function(event) {
+
+        const modal =
+            document.getElementById("purchaseModal");
+
+        if (event.target === modal) {
+
+            closePurchase();
+
         }
-        if (input.toLowerCase().startsWith('integrate(')) {
-            const inside = input.slice(10, -1);
-            const parts = inside.split(',').map(s => s.trim());
-            const res = math.integrate(parts[0], parts[1] || 'x').toString();
-            resultBox.innerHTML = `
-                <div class="label">Integral</div>
-                <div>${input}</div>
-                <div class="label" style="margin-top:14px;">Result</div>
-                <div class="answer">${res} + C</div>`;
-            return;
-        }
 
-        // General evaluation
-        const evaluated = math.evaluate(input);
-        resultBox.innerHTML = `
-            <div class="label">Expression</div>
-            <div>${input}</div>
-            <div class="label" style="margin-top:14px;">Result</div>
-            <div class="answer">${evaluated}</div>`;
-    } catch (err) {
-        resultBox.innerHTML = `
-            <div class="label">Could not process</div>
-            <div style="color:var(--danger)">${err.message}</div>
-            <div style="margin-top:10px; color:var(--text-muted); font-size:0.85rem;">
-                Try simpler expressions or use the example buttons.
-            </div>`;
-    }
-}
+    };
 
-function solveEquation(eq) {
-    // Very simple linear solver: ax + b = c
-    try {
-        const sides = eq.split('=').map(s => s.trim());
-        if (sides.length !== 2) return 'Only single equations supported';
-
-        // Move everything to left: left - right = 0
-        const left = sides[0];
-        const right = sides[1];
-
-        // Try to solve for x using math.js rationalize / simplify approach
-        // For common school cases we do basic parsing
-        const expr = `(\( {left}) - ( \){right})`;
-        const simplified = math.simplify(expr).toString();
-
-        // Attempt numerical solve for x
-        const f = math.parse(simplified).compile();
-        // Simple Newton-like or direct for linear
-        // Better: use math.solve if available (mathjs has limited solve)
-        
-        // Manual linear extraction
-        const match = simplified.match(/([+-]?\d*\.?\d*)\s*\*?\s*x\s*([+-]\s*\d+\.?\d*)?/);
-        if (match) {
-            let a = parseFloat(match[1] || '1');
-            if (match[1] === '' || match[1] === '+') a = 1;
-            if (match[1] === '-') a = -1;
-            let b = match[2] ? parseFloat(match[2].replace(/\s/g,'')) : 0;
-            if (a === 0) return 'No solution or infinite solutions';
-            const x = -b / a;
-            return `x = ${math.round(x, 6)}`;
-        }
-
-        // Quadratic attempt: x^2 + bx + c = 0 style
-        // Fallback message
-        return `Simplified form: ${simplified} = 0\n(Try rearranging or use numerical methods for complex equations)`;
-    } catch (e) {
-        return 'Unable to solve this form automatically. Try rewriting as expression = 0';
-    }
-}
-
-function scrollToLab() {
-    document.getElementById('mathlab').scrollIntoView({behavior:'smooth'});
-}
-
-// ========== QUIZ ==========
-const quizBank = [
-    { q: "What is the value of 7 × 8 + 6?", options: ["56","62","48","70"], answer: 1 },
-    { q: "Solve for x: 2x + 3 = 11", options: ["x = 3","x = 4","x = 5","x = 6"], answer: 1 },
-    { q: "What is the derivative of x²?", options: ["x","2x","x³","2"], answer: 1 },
-    { q: "√144 equals?", options: ["10","11","12","14"], answer: 2 },
-    { q: "sin(90°) = ?", options: ["0","0.5","1","√2/2"], answer: 2 },
-    { q: "The quadratic formula is used for equations of the form:", options: ["ax + b = 0","ax² + bx + c = 0","a/x = b","x³ = a"], answer: 1 }
-];
-
-let currentQuiz = null;
-let quizTimer = null;
-let timeLeft = 30;
-
-function startQuiz() {
-    clearInterval(quizTimer);
-    timeLeft = 30;
-    document.getElementById('quizTimer').innerHTML = `<i class="fa-solid fa-clock"></i> ${timeLeft}s`;
-    document.getElementById('quizFeedback').innerHTML = '';
-
-    currentQuiz = quizBank[Math.floor(Math.random() * quizBank.length)];
-    document.getElementById('quizQ').textContent = currentQuiz.q;
-
-    const opts = document.getElementById('quizOpts');
-    opts.innerHTML = '';
-    currentQuiz.options.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-opt';
-        btn.textContent = opt;
-        btn.onclick = () => checkAnswer(i, btn);
-        opts.appendChild(btn);
-    });
-
-    quizTimer = setInterval(() => {
-        timeLeft--;
-        document.getElementById('quizTimer').innerHTML = `<i class="fa-solid fa-clock"></i> ${timeLeft}s`;
-        if (timeLeft <= 0) {
-            clearInterval(quizTimer);
-            document.getElementById('quizFeedback').innerHTML = `<span style="color:var(--danger)">Time’s up! Correct answer: ${currentQuiz.options[currentQuiz.answer]}</span>`;
-            disableOpts();
-        }
-    }, 1000);
-}
-
-function checkAnswer(idx, btn) {
-    clearInterval(quizTimer);
-    const correct = currentQuiz.answer;
-    if (idx === correct) {
-        btn.classList.add('correct');
-        document.getElementById('quizFeedback').innerHTML = `<span style="color:var(--success)">Correct!</span>`;
-    } else {
-        btn.classList.add('wrong');
-        document.getElementById('quizFeedback').innerHTML = `<span style="color:var(--danger)">Incorrect. Answer: ${currentQuiz.options[correct]}</span>`;
-    }
-    disableOpts();
-}
-
-function disableOpts() {
-    document.querySelectorAll('.quiz-opt').forEach(b => b.onclick = null);
-}
-
-// ========== AI TUTOR (Math focused) ==========
-function toggleAI() {
-    const win = document.getElementById('aiWindow');
-    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-}
-function openAI() {
-    document.getElementById('aiWindow').style.display = 'flex';
-}
-
-function sendAI() {
-    const input = document.getElementById('aiInput');
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMsg(text, 'user');
-    input.value = '';
-
-    setTimeout(() => {
-        const reply = generateMathReply(text);
-        addMsg(reply, 'bot');
-    }, 500);
-}
-
-function addMsg(text, type) {
-    const box = document.getElementById('aiMessages');
-    const div = document.createElement('div');
-    div.className = `msg ${type}`;
-    div.innerHTML = text.replace(/\n/g, '<br>');
-    box.appendChild(div);
-    box.scrollTop = box.scrollHeight;
-}
-
-function generateMathReply(query) {
-    const q = query.toLowerCase();
-
-    // Direct solve requests
-    if (q.includes('solve') || q.includes('=') || q.match(/\d+\s*[xX]\s*[+\-]/)) {
-        try {
-            // Extract equation-like part
-            let eq = query;
-            if (q.startsWith('solve')) eq = query.replace(/solve/i, '').trim();
-            if (eq.includes('=')) {
-                const sol = solveEquation(eq);
-                return `Looking at the equation:<br><strong>\( {eq}</strong><br><br>Solution:<br><strong style="color:var(--success)"> \){sol}</strong>`;
-            }
-        } catch(e) {}
-    }
-
-    // Evaluation
-    try {
-        if (q.match(/[\d\+\-\*\/\^\(\)]/) && !q.includes('what') && !q.includes('explain')) {
-            const val = math.evaluate(query);
-            return `Evaluating: <strong>\( {query}</strong><br><br>Result = <strong style="color:var(--success)"> \){val}</strong>`;
-        }
-    } catch(e) {}
-
-    // Concept answers
-    if (q.includes('quadratic formula')) {
-        return `The quadratic formula for ax² + bx + c = 0 is:<br><br><strong>x = [-b ± √(b² - 4ac)] / (2a)</strong><br><br>It gives the roots of any quadratic equation.`;
-    }
-    if (q.includes('pythagoras') || q.includes('pythagorean')) {
-        return `Pythagorean theorem:<br><br><strong>a² + b² = c²</strong><br><br>where c is the hypotenuse of a right-angled triangle.`;
-    }
-    if (q.includes('derivative') || q.includes('differentiate')) {
-        return `The derivative measures the rate of change.<br><br>Basic rules:<br>• d/dx (xⁿ) = n·xⁿ⁻¹<br>• d/dx (sin x) = cos x<br>• d/dx (eˣ) = eˣ<br><br>You can also type “derivative(x^3, x)” in the Math Lab.`;
-    }
-    if (q.includes('integral') || q.includes('integrate')) {
-        return `Integration is the reverse of differentiation.<br><br>∫ xⁿ dx = xⁿ⁺¹ / (n+1) + C  (n ≠ -1)<br><br>Try “integrate(2x, x)” in the Math Lab for instant results.`;
-    }
-    if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
-        return `Hello! Ask me any math question — equations, formulas, derivatives, or concepts.`;
-    }
-
-    // Default helpful response
-    return `I can help with that. Try one of these:<br><br>
-• Type an equation like “2x + 5 = 17”<br>
-• Ask “what is the quadratic formula?”<br>
-• Request “derivative of x²”<br>
-• Or use the Math Lab above for live calculation.<br><br>
-What would you like to solve?`;
-}
-
-// Init
-document.getElementById('labInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') runMathLab();
-});
 </script>
+
 </body>
-    </html >
+    </html> 
